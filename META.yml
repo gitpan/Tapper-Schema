@@ -1,0 +1,43 @@
+---
+abstract: 'Tapper - Database schemas for Tapper'
+author:
+  - 'AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>'
+  - 'AMD OSRC Tapper Team <tapper@amd64.org>'
+build_requires:
+  DateTime::Format::SQLite: 0
+  ExtUtils::MakeMaker: 6.42
+  Scalar::Util: 0
+  Tapper::Config: 3.000001
+  Tapper::Test: 3.000001
+  Test::More: 0
+  Test::Perl::Critic: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+distribution_type: module
+generated_by: 'Module::Install version 1.00'
+license: freebsd
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Tapper-Schema
+no_index:
+  directory:
+    - inc
+    - t
+    - xt
+requires:
+  DBIx::Class: 0.08123
+  DBIx::Class::InflateColumn::Object::Enum: 0
+  DBIx::Class::Schema::Versioned: 0
+  DBIx::Class::TimeStamp: 0.12
+  DateTime::Format::Builder: 0
+  DateTime::Format::MySQL: 0
+  DateTime::Format::Strptime: 0
+  SQL::Translator: 0
+  TAP::DOM: 0.10
+  Tapper::TAP::Harness: 2.010040
+  Test::Fixture::DBIC::Schema: 0.03
+  YAML::XS: 0
+  common::sense: 0
+  perl: 5.010
+version: 3.000001
