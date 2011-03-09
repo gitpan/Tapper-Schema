@@ -7,8 +7,8 @@ build_requires:
   DateTime::Format::SQLite: 0
   ExtUtils::MakeMaker: 6.42
   Scalar::Util: 0
-  Tapper::Config: 3.000001
-  Tapper::Test: 3.000001
+  Tapper::Config: 3.000002
+  Tapper::Test: 3.000002
   Test::More: 0
   Test::Perl::Critic: 0
 configure_requires:
@@ -26,7 +26,7 @@ no_index:
     - t
     - xt
 requires:
-  DBIx::Class: 0.08123
+  DBIx::Class: 0.08127
   DBIx::Class::InflateColumn::Object::Enum: 0
   DBIx::Class::Schema::Versioned: 0
   DBIx::Class::TimeStamp: 0.12
@@ -37,7 +37,7 @@ requires:
   TAP::DOM: 0.10
   Tapper::TAP::Harness: 2.010040
   Test::Fixture::DBIC::Schema: 0.03
-  YAML::XS: 0
+  YAML::Syck: 1.17
   common::sense: 0
   perl: 5.010
-version: 3.000001
+version: 3.000002

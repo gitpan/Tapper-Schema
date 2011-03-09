@@ -13,13 +13,13 @@
 
 #     ABSTRACT => q[Tapper - Database schemas for Tapper]
 #     AUTHOR => q[AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>, AMD OSRC Tapper Team <tapper@amd64.org>]
-#     BUILD_REQUIRES => { DateTime::Format::SQLite=>q[0], Scalar::Util=>q[0], Test::Perl::Critic=>q[0], Test::More=>q[0], Tapper::Test=>q[3.000001], Tapper::Config=>q[3.000001], ExtUtils::MakeMaker=>q[6.42] }
+#     BUILD_REQUIRES => { DateTime::Format::SQLite=>q[0], Scalar::Util=>q[0], Test::Perl::Critic=>q[0], Test::More=>q[0], Tapper::Test=>q[3.000002], Tapper::Config=>q[3.000002], ExtUtils::MakeMaker=>q[6.42] }
 #     DISTNAME => q[Tapper-Schema]
 #     LICENSE => q[freebsd]
 #     NAME => q[Tapper::Schema]
 #     NO_META => q[1]
-#     PREREQ_PM => { Scalar::Util=>q[0], DateTime::Format::MySQL=>q[0], Tapper::Test=>q[3.000001], DateTime::Format::Strptime=>q[0], DateTime::Format::Builder=>q[0], YAML::XS=>q[0], Test::Perl::Critic=>q[0], DBIx::Class::Schema::Versioned=>q[0], DBIx::Class=>q[0.08123], Test::Fixture::DBIC::Schema=>q[0.03], SQL::Translator=>q[0], TAP::DOM=>q[0.10], ExtUtils::MakeMaker=>q[6.42], DBIx::Class::TimeStamp=>q[0.12], Test::More=>q[0], DateTime::Format::SQLite=>q[0], Tapper::Config=>q[3.000001], DBIx::Class::InflateColumn::Object::Enum=>q[0], Tapper::TAP::Harness=>q[2.010040], common::sense=>q[0] }
-#     VERSION => q[3.000001]
+#     PREREQ_PM => { Scalar::Util=>q[0], DateTime::Format::MySQL=>q[0], Tapper::Test=>q[3.000002], DateTime::Format::Strptime=>q[0], DateTime::Format::Builder=>q[0], Test::Perl::Critic=>q[0], DBIx::Class::Schema::Versioned=>q[0], DBIx::Class=>q[0.08127], Test::Fixture::DBIC::Schema=>q[0.03], SQL::Translator=>q[0], TAP::DOM=>q[0.10], ExtUtils::MakeMaker=>q[6.42], DBIx::Class::TimeStamp=>q[0.12], YAML::Syck=>q[1.17], Test::More=>q[0], DateTime::Format::SQLite=>q[0], Tapper::Config=>q[3.000002], DBIx::Class::InflateColumn::Object::Enum=>q[0], Tapper::TAP::Harness=>q[2.010040], common::sense=>q[0] }
+#     VERSION => q[3.000002]
 #     VERSION_FROM => q[lib/Tapper/Schema.pm]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
@@ -62,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Tapper::Schema
 NAME_SYM = Tapper_Schema
-VERSION = 3.000001
+VERSION = 3.000002
 VERSION_MACRO = VERSION
-VERSION_SYM = 3_000001
+VERSION_SYM = 3_000002
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 3.000001
+XS_VERSION = 3.000002
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -414,7 +414,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Tapper-Schema
-DISTVNAME = Tapper-Schema-3.000001
+DISTVNAME = Tapper-Schema-3.000002
 
 
 # --- MakeMaker macro section:
@@ -985,11 +985,11 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3.000001">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3.000002">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Tapper - Database schemas for Tapper</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>AMD OSRC Tapper Team, C&lt;&lt; &lt;tapper at amd64.org&gt; &gt;&gt;, AMD OSRC Tapper Team &lt;tapper@amd64.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class" VERSION="0.08123" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class" VERSION="0.08127" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::InflateColumn::Object::Enum" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::Schema::Versioned" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::TimeStamp" VERSION="0.12" />' >> $(DISTNAME).ppd
@@ -1000,7 +1000,7 @@ ppd :
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="TAP::DOM" VERSION="0.1" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::TAP::Harness" VERSION="2.01004" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Test::Fixture::DBIC::Schema" VERSION="0.03" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="YAML::XS" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="YAML::Syck" VERSION="1.17" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="common::sense" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="i686-linux-5.12" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
