@@ -1,56 +1,53 @@
 # This Makefile is for the Tapper::Schema extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 6.56 (Revision: 65600) from the contents of
+# 6.48 (Revision: 64800) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
 #
 #   MakeMaker ARGV: ()
 #
-
 #   MakeMaker Parameters:
 
 #     ABSTRACT => q[Tapper - Database schemas for Tapper]
-#     AUTHOR => q[AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>, AMD OSRC Tapper Team <tapper@amd64.org>]
-#     BUILD_REQUIRES => { DateTime::Format::SQLite=>q[0], Scalar::Util=>q[0], Test::Perl::Critic=>q[0], Test::More=>q[0], Tapper::Test=>q[3.000002], Tapper::Config=>q[3.000002], ExtUtils::MakeMaker=>q[6.42] }
+#     AUTHOR => q[AMD OSRC Tapper Team <tapper@amd64.org>]
+#     DIR => []
 #     DISTNAME => q[Tapper-Schema]
-#     LICENSE => q[freebsd]
 #     NAME => q[Tapper::Schema]
 #     NO_META => q[1]
-#     PREREQ_PM => { Scalar::Util=>q[0], DateTime::Format::MySQL=>q[0], Tapper::Test=>q[3.000002], DateTime::Format::Strptime=>q[0], DateTime::Format::Builder=>q[0], Test::Perl::Critic=>q[0], DBIx::Class::Schema::Versioned=>q[0], DBIx::Class=>q[0.08127], Test::Fixture::DBIC::Schema=>q[0.03], SQL::Translator=>q[0], TAP::DOM=>q[0.10], ExtUtils::MakeMaker=>q[6.42], DBIx::Class::TimeStamp=>q[0.12], YAML::Syck=>q[1.17], Test::More=>q[0], DateTime::Format::SQLite=>q[0], Tapper::Config=>q[3.000002], DBIx::Class::InflateColumn::Object::Enum=>q[0], Tapper::TAP::Harness=>q[2.010040], common::sense=>q[0] }
-#     VERSION => q[3.000002]
-#     VERSION_FROM => q[lib/Tapper/Schema.pm]
+#     PL_FILES => {  }
+#     PREREQ_PM => { DateTime::Format::MySQL=>q[0], Scalar::Util=>q[0], Tapper::Test=>q[3.000002], DateTime::Format::Strptime=>q[0], DateTime::Format::Builder=>q[0], Test::Perl::Critic=>q[0], DBIx::Class::Schema::Versioned=>q[0], DBIx::Class=>q[0.08127], Test::Fixture::DBIC::Schema=>q[0.03], SQL::Translator=>q[0], TAP::DOM=>q[0.10], ExtUtils::MakeMaker=>q[6.42], DBIx::Class::TimeStamp=>q[0.12], YAML::Syck=>q[1.17], DateTime::Format::SQLite=>q[0], Test::More=>q[0], Tapper::Config=>q[3.000002], DBIx::Class::InflateColumn::Object::Enum=>q[0], common::sense=>q[0], Tapper::TAP::Harness=>q[2.010040] }
+#     VERSION => q[3.000004]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
-#     test => { TESTS=>q[t/*.t xt/*.t] }
 
 # --- MakeMaker post_initialize section:
 
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2/i686-linux/Config.pm).
+# These definitions are from config.sh (via /2home/ss5/perl510/lib/5.10.0/x86_64-linux/Config.pm).
 # They may have been overridden via Makefile.PL or on the command line.
 AR = ar
-CC = cc
+CC = gcc
 CCCDLFLAGS = -fPIC
 CCDLFLAGS = -Wl,-E
 DLEXT = so
 DLSRC = dl_dlopen.xs
 EXE_EXT = 
 FULL_AR = /usr/bin/ar
-LD = cc
-LDDLFLAGS = -shared -O2 -L/usr/local/lib -fstack-protector
-LDFLAGS =  -fstack-protector -L/usr/local/lib
-LIBC = /lib/libc-2.10.1.so
+LD = gcc
+LDDLFLAGS = -shared -O2 -L/usr/local/lib
+LDFLAGS =  -L/usr/local/lib
+LIBC = /lib/libc-2.6.1.so
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = linux
-OSVERS = 2.6.31-22-generic
+OSVERS = 2.6.22-14-generic
 RANLIB = :
-SITELIBEXP = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/site_perl/5.12.2
-SITEARCHEXP = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/site_perl/5.12.2/i686-linux
+SITELIBEXP = /2home/ss5/perl510/lib/site_perl/5.10.0
+SITEARCHEXP = /2home/ss5/perl510/lib/site_perl/5.10.0/x86_64-linux
 SO = so
 VENDORARCHEXP = 
 VENDORLIBEXP = 
@@ -62,11 +59,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Tapper::Schema
 NAME_SYM = Tapper_Schema
-VERSION = 3.000002
+VERSION = 3.000004
 VERSION_MACRO = VERSION
-VERSION_SYM = 3_000002
+VERSION_SYM = 3_000004
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 3.000002
+XS_VERSION = 3.000004
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -80,55 +77,55 @@ MAN3EXT = 3
 INSTALLDIRS = site
 DESTDIR = 
 PREFIX = $(SITEPREFIX)
-PERLPREFIX = /home/ss5/perl5/perlbrew/perls/perl-5.12.2
-SITEPREFIX = /home/ss5/perl5/perlbrew/perls/perl-5.12.2
+PERLPREFIX = /2home/ss5/perl510/bin/..
+SITEPREFIX = /2home/ss5/perl510/bin/..
 VENDORPREFIX = 
-INSTALLPRIVLIB = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2
+INSTALLPRIVLIB = /2home/ss5/perl510/lib/5.10.0
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/site_perl/5.12.2
+INSTALLSITELIB = /2home/ss5/perl510/lib/site_perl/5.10.0
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
 INSTALLVENDORLIB = 
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2/i686-linux
+INSTALLARCHLIB = /2home/ss5/perl510/lib/5.10.0/x86_64-linux
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/site_perl/5.12.2/i686-linux
+INSTALLSITEARCH = /2home/ss5/perl510/lib/site_perl/5.10.0/x86_64-linux
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
 INSTALLVENDORARCH = 
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
-INSTALLBIN = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin
+INSTALLBIN = /2home/ss5/perl510/bin
 DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
-INSTALLSITEBIN = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin
+INSTALLSITEBIN = /2home/ss5/perl510/bin
 DESTINSTALLSITEBIN = $(DESTDIR)$(INSTALLSITEBIN)
 INSTALLVENDORBIN = 
 DESTINSTALLVENDORBIN = $(DESTDIR)$(INSTALLVENDORBIN)
-INSTALLSCRIPT = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin
+INSTALLSCRIPT = /2home/ss5/perl510/bin/
 DESTINSTALLSCRIPT = $(DESTDIR)$(INSTALLSCRIPT)
-INSTALLSITESCRIPT = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin
+INSTALLSITESCRIPT = /2home/ss5/perl510/bin
 DESTINSTALLSITESCRIPT = $(DESTDIR)$(INSTALLSITESCRIPT)
 INSTALLVENDORSCRIPT = 
 DESTINSTALLVENDORSCRIPT = $(DESTDIR)$(INSTALLVENDORSCRIPT)
-INSTALLMAN1DIR = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/man/man1
+INSTALLMAN1DIR = /2home/ss5/perl510/man/man1
 DESTINSTALLMAN1DIR = $(DESTDIR)$(INSTALLMAN1DIR)
-INSTALLSITEMAN1DIR = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/man/man1
+INSTALLSITEMAN1DIR = /2home/ss5/perl510/man/man1
 DESTINSTALLSITEMAN1DIR = $(DESTDIR)$(INSTALLSITEMAN1DIR)
 INSTALLVENDORMAN1DIR = 
 DESTINSTALLVENDORMAN1DIR = $(DESTDIR)$(INSTALLVENDORMAN1DIR)
-INSTALLMAN3DIR = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/man/man3
+INSTALLMAN3DIR = /2home/ss5/perl510/man/man3
 DESTINSTALLMAN3DIR = $(DESTDIR)$(INSTALLMAN3DIR)
-INSTALLSITEMAN3DIR = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/man/man3
+INSTALLSITEMAN3DIR = /2home/ss5/perl510/man/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
 INSTALLVENDORMAN3DIR = 
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
 PERL_LIB =
-PERL_ARCHLIB = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2/i686-linux
+PERL_ARCHLIB = /2home/ss5/perl510/lib/5.10.0/x86_64-linux
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2/i686-linux/CORE
-PERL = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin/perl5.12.2 "-Iinc"
-FULLPERL = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin/perl5.12.2 "-Iinc"
+PERL_INC = /2home/ss5/perl510/lib/5.10.0/x86_64-linux/CORE
+PERL = /2home/ss5/perl510/bin/perl "-Iinc"
+FULLPERL = /2home/ss5/perl510/bin/perl "-Iinc"
 ABSPERL = $(PERL)
 PERLRUN = $(PERL)
 FULLPERLRUN = $(FULLPERL)
@@ -137,13 +134,12 @@ PERLRUNINST = $(PERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 FULLPERLRUNINST = $(FULLPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 ABSPERLRUNINST = $(ABSPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 PERL_CORE = 0
-PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
-MAKEMAKER   = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/lib/5.12.2/ExtUtils/MakeMaker.pm
-MM_VERSION  = 6.56
-MM_REVISION = 65600
+MAKEMAKER   = /2home/ss5/perl510/lib/5.10.0/ExtUtils/MakeMaker.pm
+MM_VERSION  = 6.48
+MM_REVISION = 64800
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -154,7 +150,7 @@ FULLEXT = Tapper/Schema
 BASEEXT = Schema
 PARENT_NAME = Tapper
 DLBASE = $(BASEEXT)
-VERSION_FROM = lib/Tapper/Schema.pm
+VERSION_FROM = 
 OBJECT = 
 LDFROM = $(OBJECT)
 LINKTYPE = dynamic
@@ -272,10 +268,10 @@ PM_TO_BLIB = lib/Tapper/Schema/ReportsDB/Result/ReportgroupArbitrary.pm \
 	blib/lib/Tapper/Schema/TestrunDB/ResultSet/Host.pm \
 	lib/Tapper/Schema/TestrunDB/Result/Testrun.pm \
 	blib/lib/Tapper/Schema/TestrunDB/Result/Testrun.pm \
-	lib/Tapper/Schema/TestrunDB/Result/Host.pm \
-	blib/lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm \
 	blib/lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm \
+	lib/Tapper/Schema/TestrunDB/Result/Host.pm \
+	blib/lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	lib/Tapper/Schema/ReportsDB/Result/View020TestrunOverview.pm \
 	blib/lib/Tapper/Schema/ReportsDB/Result/View020TestrunOverview.pm \
 	lib/Tapper/Schema/ReportsDB/Result/ReportSection.pm \
@@ -326,14 +322,14 @@ PM_TO_BLIB = lib/Tapper/Schema/ReportsDB/Result/ReportgroupArbitrary.pm \
 	blib/lib/Tapper/Schema/TestrunDB/Result/QueueHost.pm \
 	lib/Tapper/Schema/ReportsDB/Result/User.pm \
 	blib/lib/Tapper/Schema/ReportsDB/Result/User.pm \
-	lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
-	blib/lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	lib/Tapper/Schema/ReportsDB/Result/Report.pm \
 	blib/lib/Tapper/Schema/ReportsDB/Result/Report.pm \
-	lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
-	blib/lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
+	lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
+	blib/lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	lib/Tapper/Schema/TestrunDB.pm \
 	blib/lib/Tapper/Schema/TestrunDB.pm \
+	lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
+	blib/lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
 	lib/Tapper/Schema/TestrunDB/ResultSet/Testrun.pm \
 	blib/lib/Tapper/Schema/TestrunDB/ResultSet/Testrun.pm \
 	lib/Tapper/Schema/ReportsDB/Result/ReportFile.pm \
@@ -349,7 +345,7 @@ PM_TO_BLIB = lib/Tapper/Schema/ReportsDB/Result/ReportgroupArbitrary.pm \
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 6.56
+MM_Unix_VERSION = 6.48
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
@@ -367,7 +363,7 @@ SHELL = /bin/sh
 CHMOD = chmod
 CP = cp
 MV = mv
-NOOP = $(TRUE)
+NOOP = $(SHELL) -c true
 NOECHO = @
 RM_F = rm -f
 RM_RF = rm -rf
@@ -375,22 +371,20 @@ TEST_F = test -f
 TOUCH = touch
 UMASK_NULL = umask 0
 DEV_NULL = > /dev/null 2>&1
-MKPATH = $(ABSPERLRUN) -MExtUtils::Command -e 'mkpath' --
-EQUALIZE_TIMESTAMP = $(ABSPERLRUN) -MExtUtils::Command -e 'eqtime' --
-FALSE = false
-TRUE = true
+MKPATH = $(ABSPERLRUN) "-MExtUtils::Command" -e mkpath
+EQUALIZE_TIMESTAMP = $(ABSPERLRUN) "-MExtUtils::Command" -e eqtime
 ECHO = echo
 ECHO_N = echo -n
 UNINST = 0
 VERBINST = 0
-MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install([ from_to => {@ARGV}, verbose => '\''$(VERBINST)'\'', uninstall_shadows => '\''$(UNINST)'\'', dir_mode => '\''$(PERM_DIR)'\'' ]);' --
-DOC_INSTALL = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'perllocal_install' --
-UNINSTALL = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'uninstall' --
-WARN_IF_OLD_PACKLIST = $(ABSPERLRUN) -MExtUtils::Command::MM -e 'warn_if_old_packlist' --
+MOD_INSTALL = $(ABSPERLRUN) -MExtUtils::Install -e 'install({@ARGV}, '\''$(VERBINST)'\'', 0, '\''$(UNINST)'\'');' --
+DOC_INSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e perllocal_install
+UNINSTALL = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e uninstall
+WARN_IF_OLD_PACKLIST = $(ABSPERLRUN) "-MExtUtils::Command::MM" -e warn_if_old_packlist
 MACROSTART = 
 MACROEND = 
 USEMAKEFILE = -f
-FIXIN = $(ABSPERLRUN) -MExtUtils::MY -e 'MY->fixin(shift)' --
+FIXIN = $(PERLRUN) "-MExtUtils::MY" -e "MY->fixin(shift)"
 
 
 # --- MakeMaker makemakerdflt section:
@@ -414,7 +408,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Tapper-Schema
-DISTVNAME = Tapper-Schema-3.000002
+DISTVNAME = Tapper-Schema-3.000004
 
 
 # --- MakeMaker macro section:
@@ -486,42 +480,42 @@ blibdirs.ts : blibdirs
 
 $(INST_LIBDIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_LIBDIR)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_LIBDIR)
+	$(NOECHO) $(CHMOD) 755 $(INST_LIBDIR)
 	$(NOECHO) $(TOUCH) $(INST_LIBDIR)$(DFSEP).exists
 
 $(INST_ARCHLIB)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_ARCHLIB)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_ARCHLIB)
+	$(NOECHO) $(CHMOD) 755 $(INST_ARCHLIB)
 	$(NOECHO) $(TOUCH) $(INST_ARCHLIB)$(DFSEP).exists
 
 $(INST_AUTODIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_AUTODIR)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_AUTODIR)
+	$(NOECHO) $(CHMOD) 755 $(INST_AUTODIR)
 	$(NOECHO) $(TOUCH) $(INST_AUTODIR)$(DFSEP).exists
 
 $(INST_ARCHAUTODIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_ARCHAUTODIR)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_ARCHAUTODIR)
+	$(NOECHO) $(CHMOD) 755 $(INST_ARCHAUTODIR)
 	$(NOECHO) $(TOUCH) $(INST_ARCHAUTODIR)$(DFSEP).exists
 
 $(INST_BIN)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_BIN)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_BIN)
+	$(NOECHO) $(CHMOD) 755 $(INST_BIN)
 	$(NOECHO) $(TOUCH) $(INST_BIN)$(DFSEP).exists
 
 $(INST_SCRIPT)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_SCRIPT)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_SCRIPT)
+	$(NOECHO) $(CHMOD) 755 $(INST_SCRIPT)
 	$(NOECHO) $(TOUCH) $(INST_SCRIPT)$(DFSEP).exists
 
 $(INST_MAN1DIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_MAN1DIR)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_MAN1DIR)
+	$(NOECHO) $(CHMOD) 755 $(INST_MAN1DIR)
 	$(NOECHO) $(TOUCH) $(INST_MAN1DIR)$(DFSEP).exists
 
 $(INST_MAN3DIR)$(DFSEP).exists :: Makefile.PL
 	$(NOECHO) $(MKPATH) $(INST_MAN3DIR)
-	$(NOECHO) $(CHMOD) $(PERM_DIR) $(INST_MAN3DIR)
+	$(NOECHO) $(CHMOD) 755 $(INST_MAN3DIR)
 	$(NOECHO) $(TOUCH) $(INST_MAN3DIR)$(DFSEP).exists
 
 
@@ -575,17 +569,17 @@ manifypods : pure_all  \
 	lib/Tapper/Schema/TestrunDB/Result/Topic.pm \
 	lib/Tapper/Schema/TestrunDB/Result/QueueHost.pm \
 	lib/Tapper/Schema/TestrunDB/Result/Testrun.pm \
-	lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm \
+	lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	lib/Tapper/Schema/ReportsDB/Result/ReportSection.pm \
 	lib/Tapper/Schema/ReportsDB/Result/User.pm \
-	lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	lib/Tapper/Schema/ReportsDB/Result/Report.pm \
+	lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	lib/Tapper/Schema/TestrunDB/Result/State.pm \
 	lib/Tapper/Schema.pm \
 	lib/Tapper/Schema/ReportsDB/Result/ReportComment.pm \
-	lib/Tapper/Schema/TestrunDB.pm \
 	lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
+	lib/Tapper/Schema/TestrunDB.pm \
 	lib/Tapper/Schema/TestrunDB/Result/TestplanInstance.pm \
 	lib/Tapper/Schema/TestrunDB/ResultSet/TestrunScheduling.pm \
 	lib/Tapper/Schema/TestrunDB/Result/Preconditiontype.pm \
@@ -608,21 +602,20 @@ manifypods : pure_all  \
 	  lib/Tapper/Schema/TestrunDB/Result/Topic.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Topic.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/QueueHost.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::QueueHost.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/Testrun.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Testrun.$(MAN3EXT) \
-	  lib/Tapper/Schema/TestrunDB/Result/Host.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Host.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::PrePrecondition.$(MAN3EXT) \
+	  lib/Tapper/Schema/TestrunDB/Result/Host.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Host.$(MAN3EXT) \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportSection.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::ReportSection.$(MAN3EXT) \
 	  lib/Tapper/Schema/ReportsDB/Result/User.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::User.$(MAN3EXT) \
-	  lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::ReportTopic.$(MAN3EXT) \
 	  lib/Tapper/Schema/ReportsDB/Result/Report.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::Report.$(MAN3EXT) \
+	  lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::ReportTopic.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/State.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::State.$(MAN3EXT) \
 	  lib/Tapper/Schema.pm $(INST_MAN3DIR)/Tapper::Schema.$(MAN3EXT) \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportComment.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::ReportComment.$(MAN3EXT) \
-	  lib/Tapper/Schema/TestrunDB.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::TestrunRequestedHost.$(MAN3EXT) \
+	  lib/Tapper/Schema/TestrunDB.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/TestplanInstance.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::TestplanInstance.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/ResultSet/TestrunScheduling.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling.$(MAN3EXT) \
-	  lib/Tapper/Schema/TestrunDB/Result/Preconditiontype.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Preconditiontype.$(MAN3EXT) 
-	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
+	  lib/Tapper/Schema/TestrunDB/Result/Preconditiontype.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::Preconditiontype.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/User.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::User.$(MAN3EXT) \
 	  lib/Tapper/Schema/TestrunDB/Result/TestrunScheduling.pm $(INST_MAN3DIR)/Tapper::Schema::TestrunDB::Result::TestrunScheduling.$(MAN3EXT) \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportFile.pm $(INST_MAN3DIR)/Tapper::Schema::ReportsDB::Result::ReportFile.$(MAN3EXT) \
@@ -803,16 +796,16 @@ distsignature : create_distdir
 
 # --- MakeMaker install section:
 
-install :: pure_install doc_install
+install :: all pure_install doc_install
 	$(NOECHO) $(NOOP)
 
-install_perl :: pure_perl_install doc_perl_install
+install_perl :: all pure_perl_install doc_perl_install
 	$(NOECHO) $(NOOP)
 
-install_site :: pure_site_install doc_site_install
+install_site :: all pure_site_install doc_site_install
 	$(NOECHO) $(NOOP)
 
-install_vendor :: pure_vendor_install doc_vendor_install
+install_vendor :: all pure_vendor_install doc_vendor_install
 	$(NOECHO) $(NOOP)
 
 pure_install :: pure_$(INSTALLDIRS)_install
@@ -827,7 +820,7 @@ pure__install : pure_site_install
 doc__install : doc_site_install
 	$(NOECHO) $(ECHO) INSTALLDIRS not defined, defaulting to INSTALLDIRS=site
 
-pure_perl_install :: all
+pure_perl_install ::
 	$(NOECHO) $(MOD_INSTALL) \
 		read $(PERL_ARCHLIB)/auto/$(FULLEXT)/.packlist \
 		write $(DESTINSTALLARCHLIB)/auto/$(FULLEXT)/.packlist \
@@ -841,7 +834,7 @@ pure_perl_install :: all
 		$(SITEARCHEXP)/auto/$(FULLEXT)
 
 
-pure_site_install :: all
+pure_site_install ::
 	$(NOECHO) $(MOD_INSTALL) \
 		read $(SITEARCHEXP)/auto/$(FULLEXT)/.packlist \
 		write $(DESTINSTALLSITEARCH)/auto/$(FULLEXT)/.packlist \
@@ -854,7 +847,7 @@ pure_site_install :: all
 	$(NOECHO) $(WARN_IF_OLD_PACKLIST) \
 		$(PERL_ARCHLIB)/auto/$(FULLEXT)
 
-pure_vendor_install :: all
+pure_vendor_install ::
 	$(NOECHO) $(MOD_INSTALL) \
 		read $(VENDORARCHEXP)/auto/$(FULLEXT)/.packlist \
 		write $(DESTINSTALLVENDORARCH)/auto/$(FULLEXT)/.packlist \
@@ -865,7 +858,7 @@ pure_vendor_install :: all
 		$(INST_MAN1DIR) $(DESTINSTALLVENDORMAN1DIR) \
 		$(INST_MAN3DIR) $(DESTINSTALLVENDORMAN3DIR)
 
-doc_perl_install :: all
+doc_perl_install ::
 	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
 	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
 	-$(NOECHO) $(DOC_INSTALL) \
@@ -876,7 +869,7 @@ doc_perl_install :: all
 		EXE_FILES "$(EXE_FILES)" \
 		>> $(DESTINSTALLARCHLIB)/perllocal.pod
 
-doc_site_install :: all
+doc_site_install ::
 	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
 	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
 	-$(NOECHO) $(DOC_INSTALL) \
@@ -887,7 +880,7 @@ doc_site_install :: all
 		EXE_FILES "$(EXE_FILES)" \
 		>> $(DESTINSTALLARCHLIB)/perllocal.pod
 
-doc_vendor_install :: all
+doc_vendor_install ::
 	$(NOECHO) $(ECHO) Appending installation info to $(DESTINSTALLARCHLIB)/perllocal.pod
 	-$(NOECHO) $(MKPATH) $(DESTINSTALLARCHLIB)
 	-$(NOECHO) $(DOC_INSTALL) \
@@ -933,7 +926,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 	$(PERLRUN) Makefile.PL 
 	$(NOECHO) $(ECHO) "==> Your Makefile has been rebuilt. <=="
 	$(NOECHO) $(ECHO) "==> Please rerun the $(MAKE) command.  <=="
-	$(FALSE)
+	false
 
 
 
@@ -941,7 +934,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 
 # --- MakeMaker makeaperl section ---
 MAP_TARGET    = perl
-FULLPERL      = /home/ss5/perl5/perlbrew/perls/perl-5.12.2/bin/perl5.12.2
+FULLPERL      = /2home/ss5/perl510/bin/perl
 
 $(MAP_TARGET) :: static $(MAKE_APERL_FILE)
 	$(MAKE) $(USEMAKEFILE) $(MAKE_APERL_FILE) $@
@@ -959,7 +952,7 @@ $(MAKE_APERL_FILE) : $(FIRST_MAKEFILE) pm_to_blib
 TEST_VERBOSE=0
 TEST_TYPE=test_$(LINKTYPE)
 TEST_FILE = test.pl
-TEST_FILES = t/*.t xt/*.t
+TEST_FILES = t/*.t
 TESTDB_SW = -d
 
 testdb :: testdb_$(LINKTYPE)
@@ -985,24 +978,33 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3.000002">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="3,000004,0,0">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '    <TITLE>$(DISTNAME)</TITLE>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Tapper - Database schemas for Tapper</ABSTRACT>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '    <AUTHOR>AMD OSRC Tapper Team, C&lt;&lt; &lt;tapper at amd64.org&gt; &gt;&gt;, AMD OSRC Tapper Team &lt;tapper@amd64.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '    <AUTHOR>AMD OSRC Tapper Team &lt;tapper@amd64.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class" VERSION="0.08127" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::InflateColumn::Object::Enum" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::Schema::Versioned" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DBIx::Class::TimeStamp" VERSION="0.12" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DateTime::Format::Builder" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DateTime::Format::MySQL" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="DateTime::Format::Strptime" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="SQL::Translator" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="TAP::DOM" VERSION="0.1" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Tapper::TAP::Harness" VERSION="2.01004" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Test::Fixture::DBIC::Schema" VERSION="0.03" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="YAML::Syck" VERSION="1.17" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="common::sense" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="i686-linux-5.12" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DBIx-Class" VERSION="0,08127,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DBIx-Class-InflateColumn-Object-Enum" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DBIx-Class-Schema-Versioned" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DBIx-Class-TimeStamp" VERSION="0,12,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DateTime-Format-Builder" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DateTime-Format-MySQL" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DateTime-Format-SQLite" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="DateTime-Format-Strptime" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="ExtUtils-MakeMaker" VERSION="6,42,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="SQL-Translator" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Scalar-Util" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="TAP-DOM" VERSION="0,10,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Tapper-Config" VERSION="3,000002,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Tapper-TAP-Harness" VERSION="2,010040,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Tapper-Test" VERSION="3,000002,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Test-Fixture-DBIC-Schema" VERSION="0,03,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Test-More" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Test-Perl-Critic" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="YAML-Syck" VERSION="1,17,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="common-sense" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <OS NAME="$(OSNAME)" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-5.1" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '</SOFTPKG>' >> $(DISTNAME).ppd
@@ -1010,15 +1012,15 @@ ppd :
 
 # --- MakeMaker pm_to_blib section:
 
-pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
+pm_to_blib : $(TO_INST_PM)
+	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportgroupArbitrary.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportgroupArbitrary.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportgroupTestrun.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportgroupTestrun.pm \
 	  lib/Tapper/Schema/TestTools.pm blib/lib/Tapper/Schema/TestTools.pm \
 	  lib/Tapper/Schema/TestrunDB/ResultSet/Host.pm blib/lib/Tapper/Schema/TestrunDB/ResultSet/Host.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/Testrun.pm blib/lib/Tapper/Schema/TestrunDB/Result/Testrun.pm \
-	  lib/Tapper/Schema/TestrunDB/Result/Host.pm blib/lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm blib/lib/Tapper/Schema/TestrunDB/Result/PrePrecondition.pm \
+	  lib/Tapper/Schema/TestrunDB/Result/Host.pm blib/lib/Tapper/Schema/TestrunDB/Result/Host.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/View020TestrunOverview.pm blib/lib/Tapper/Schema/ReportsDB/Result/View020TestrunOverview.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportSection.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportSection.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/State.pm blib/lib/Tapper/Schema/TestrunDB/Result/State.pm \
@@ -1036,8 +1038,7 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	  lib/Tapper/Schema/TestrunDB/Result/TestrunPrecondition.pm blib/lib/Tapper/Schema/TestrunDB/Result/TestrunPrecondition.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportgroupTestrunStats.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportgroupTestrunStats.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedFeature.pm blib/lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedFeature.pm \
-	  lib/Tapper/Schema/TestrunDB/Result/HostFeature.pm blib/lib/Tapper/Schema/TestrunDB/Result/HostFeature.pm 
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
+	  lib/Tapper/Schema/TestrunDB/Result/HostFeature.pm blib/lib/Tapper/Schema/TestrunDB/Result/HostFeature.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/Queue.pm blib/lib/Tapper/Schema/TestrunDB/Result/Queue.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/Tap.pm blib/lib/Tapper/Schema/ReportsDB/Result/Tap.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/Message.pm blib/lib/Tapper/Schema/TestrunDB/Result/Message.pm \
@@ -1045,10 +1046,10 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	  lib/Tapper/Schema/ReportsDB/Result/View010TestrunOverviewReports.pm blib/lib/Tapper/Schema/ReportsDB/Result/View010TestrunOverviewReports.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/QueueHost.pm blib/lib/Tapper/Schema/TestrunDB/Result/QueueHost.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/User.pm blib/lib/Tapper/Schema/ReportsDB/Result/User.pm \
-	  lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/Report.pm blib/lib/Tapper/Schema/ReportsDB/Result/Report.pm \
-	  lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm blib/lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
+	  lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportTopic.pm \
 	  lib/Tapper/Schema/TestrunDB.pm blib/lib/Tapper/Schema/TestrunDB.pm \
+	  lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm blib/lib/Tapper/Schema/TestrunDB/Result/TestrunRequestedHost.pm \
 	  lib/Tapper/Schema/TestrunDB/ResultSet/Testrun.pm blib/lib/Tapper/Schema/TestrunDB/ResultSet/Testrun.pm \
 	  lib/Tapper/Schema/ReportsDB/Result/ReportFile.pm blib/lib/Tapper/Schema/ReportsDB/Result/ReportFile.pm \
 	  lib/Tapper/Schema/TestrunDB/Result/Precondition.pm blib/lib/Tapper/Schema/TestrunDB/Result/Precondition.pm \
@@ -1065,7 +1066,7 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 
 
 # End.
-# Postamble by Module::Install 1.00
+# Postamble by Module::Install 0.91
 # --- Module::Install::Admin::Makefile section:
 
 realclean purge ::
