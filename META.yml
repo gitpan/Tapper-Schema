@@ -1,19 +1,20 @@
 ---
 abstract: 'Tapper - Database schemas for Tapper'
 author:
+  - 'AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>'
   - 'AMD OSRC Tapper Team <tapper@amd64.org>'
 build_requires:
   DateTime::Format::SQLite: 0
   ExtUtils::MakeMaker: 6.42
   Scalar::Util: 0
-  Tapper::Config: 3.000002
-  Tapper::Test: 3.000002
+  Tapper::Config: 3.000010
+  Tapper::Test: 3.000010
   Test::More: 0
   Test::Perl::Critic: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.91'
+generated_by: 'Module::Install version 1.00'
 license: freebsd
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,7 +35,7 @@ requires:
   DateTime::Format::Strptime: 0
   SQL::Translator: 0
   TAP::DOM: 0.10
-  Tapper::TAP::Harness: 2.010040
+  Tapper::TAP::Harness: 3.000010
   Test::Fixture::DBIC::Schema: 0.03
   YAML::Syck: 1.17
   common::sense: 0
@@ -42,4 +43,4 @@ requires:
 resources:
   bugtracker: http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Tapper-Schema
   repository: git://github.com/amd/Tapper-Schema.git
-version: 3.000004
+version: 3.000010
