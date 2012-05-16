@@ -1,4 +1,10 @@
 package Tapper::Schema::TestrunDB::ResultSet::Testrun;
+BEGIN {
+  $Tapper::Schema::TestrunDB::ResultSet::Testrun::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::ResultSet::Testrun::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -8,6 +14,7 @@ use DateTime;
 
 use parent 'DBIx::Class::ResultSet';
 
+
 sub queued_testruns
 {
         shift->search({
@@ -15,6 +22,7 @@ sub queued_testruns
                       }
                      );
 }
+
 
 sub running_testruns
 {
@@ -25,6 +33,7 @@ sub running_testruns
                      );
 }
 
+
 sub finished_testruns
 {
         shift->search({
@@ -32,6 +41,7 @@ sub finished_testruns
                       }
                      );
 }
+
 
 sub due_testruns
 {
@@ -49,9 +59,16 @@ sub due_testruns
                             );
 }
 
+
 sub all_testruns {
         shift->search({});
 }
+
+
+sub status {
+        shift->search({'testrun_scheduling.status' => $_[0]}, {join => 'testrun_scheduling'});
+}
+
 
 sub add {
         my ($self, $args) = @_;
@@ -105,6 +122,57 @@ sub add {
         return $testrun->id;
 }
 
-
-
 1;
+
+__END__
+=pod
+
+=encoding utf-8
+
+=head1 NAME
+
+Tapper::Schema::TestrunDB::ResultSet::Testrun
+
+=head2 queued_testruns
+
+Search for queued testruns.
+
+=head2 running_testruns
+
+Search for running testruns.
+
+=head2 finished_testruns
+
+Search for finished testruns.
+
+=head2 due_testruns
+
+Search for due testruns.
+
+=head2 all_testruns
+
+Search for all testruns.
+
+=head2 status
+
+Search for testrun with given status.
+
+=head2 add
+
+Insert (add) a new testrun into DB, assign it with other typical also
+inserted db rows, and return it.
+
+=head1 AUTHOR
+
+AMD OSRC Tapper Team <tapper@amd64.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+
+This is free software, licensed under:
+
+  The (two-clause) FreeBSD License
+
+=cut
+

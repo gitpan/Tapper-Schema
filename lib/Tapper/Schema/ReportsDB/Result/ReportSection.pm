@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::ReportSection;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::ReportSection::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::ReportSection::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -31,6 +37,7 @@ __PACKAGE__->add_columns
      "ticket_url",              { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      "wiki_url",                { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      "planning_id",             { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
+     "moreinfo_url",            { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      "tags",                    { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      # xen info
      "xen_changeset",           { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
@@ -67,6 +74,7 @@ __PACKAGE__->has_many   ( report => 'Tapper::Schema::ReportsDB::Result::Report',
 
 # -------------------- methods on results --------------------
 
+
 sub some_meta_available
 {
         my ($self) = @_;
@@ -98,10 +106,15 @@ sub some_meta_available
 
 1;
 
+
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::ReportsDB::ReportSection - A ResultSet description
-
+Tapper::Schema::ReportsDB::Result::ReportSection
 
 =head1 SYNOPSIS
 
@@ -109,20 +122,40 @@ Abstraction for the database table.
 
  use Tapper::Schema::ReportsDB;
 
+=head2 some_meta_available
+
+Return whether there is at least one of the standard meta info headers
+contained.
+
+=head1 NAME
+
+Tapper::Schema::ReportsDB::ReportSection - A ResultSet description
 
 =head1 AUTHOR
 
 AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
-
 =head1 BUGS
 
 None.
-
 
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
 
 This program is released under the following license: freebsd
+
+=head1 AUTHOR
+
+AMD OSRC Tapper Team <tapper@amd64.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+
+This is free software, licensed under:
+
+  The (two-clause) FreeBSD License
+
+=cut
 

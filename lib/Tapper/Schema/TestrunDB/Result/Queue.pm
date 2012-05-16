@@ -1,4 +1,10 @@
 package Tapper::Schema::TestrunDB::Result::Queue;
+BEGIN {
+  $Tapper::Schema::TestrunDB::Result::Queue::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::Result::Queue::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -9,13 +15,14 @@ __PACKAGE__->load_components(qw/InflateColumn::DateTime Core/);
 __PACKAGE__->table("queue");
 __PACKAGE__->add_columns
     (
-     "id",                        { data_type => "INT",       default_value => undef,                is_nullable => 0, size => 11,    is_auto_increment => 1, },
-     "name",                      { data_type => "VARCHAR",   default_value => "",                   is_nullable => 1, size => 255,                           },
-     "priority",                  { data_type => "INT",       default_value => 0,                    is_nullable => 0, size => 10,                            },
-     "runcount",                  { data_type => "INT",       default_value => 0,                    is_nullable => 0, size => 10,                            }, # aux for algorithm
-     "active",                    { data_type => "INT",       default_value => 0,                    is_nullable => 1, size => 1,                             },
-     "created_at",                { data_type => "TIMESTAMP", default_value => \'CURRENT_TIMESTAMP', is_nullable => 1,                                        }, #' emacs highlight bug
-     "updated_at",                { data_type => "DATETIME",  default_value => undef,                is_nullable => 1,                                        },
+     "id",         { data_type => "INT",       default_value => undef,                is_nullable => 0, size => 11,    is_auto_increment => 1, },
+     "name",       { data_type => "VARCHAR",   default_value => "",                   is_nullable => 1, size => 255,                           },
+     "priority",   { data_type => "INT",       default_value => 0,                    is_nullable => 0, size => 10,                            },
+     "runcount",   { data_type => "INT",       default_value => 0,                    is_nullable => 0, size => 10,                            }, # aux for algorithm
+     "active",     { data_type => "INT",       default_value => 0,                    is_nullable => 1, size => 1,                             },
+     "is_deleted", { data_type => "TINYINT",   default_value => "0",                  is_nullable => 1,                                        }, # deleted queues need to be kept in db to show old testruns correctly
+     "created_at", { data_type => "TIMESTAMP", default_value => \'CURRENT_TIMESTAMP', is_nullable => 1,                                        }, #' emacs highlight bug
+     "updated_at", { data_type => "DATETIME",  default_value => undef,                is_nullable => 1,                                        },
     );
 
 (my $basepkg = __PACKAGE__) =~ s/::\w+$//;
@@ -26,6 +33,7 @@ __PACKAGE__->has_many ( testrunschedulings => 'Tapper::Schema::TestrunDB::Result
 __PACKAGE__->has_many ( queuehosts         => "${basepkg}::QueueHost",         { 'foreign.queue_id' => 'self.id' });
 
 # -------------------- methods on results --------------------
+
 
 sub queued_testruns
 {
@@ -39,11 +47,12 @@ sub queued_testruns
                                           });
 }
 
+
 sub get_first_fitting
 {
         my ($self, $free_hosts) = @_;
         my $jobs = $self->queued_testruns;
-        while (my $job = $jobs->next()) {
+        foreach my $job ($jobs->all()) {
                 if (my $host = $job->fits($free_hosts)) {
                         $job->host_id ($host->id);
 
@@ -56,6 +65,7 @@ sub get_first_fitting
         }
         return;
 }
+
 
 sub to_string
 {
@@ -72,12 +82,6 @@ sub to_string
                 );
 }
 
-=head2 is_member($head, @tail)
-
-Checks if the first element is already in the list of the remaining
-elements.
-
-=cut
 
 sub is_member
 {
@@ -85,11 +89,6 @@ sub is_member
         grep { $head->id eq $_->id } @tail;
 }
 
-=head2 ordered_preconditions
-
-Returns all preconditions in the order they need to be installed.
-
-=cut
 
 sub ordered_preconditions
 {
@@ -117,6 +116,7 @@ sub ordered_preconditions
         return @done;
 }
 
+
 sub producer
 {
         my ($self) = @_;
@@ -126,6 +126,7 @@ sub producer
         return $producer_class->new unless $@;
         return;
 }
+
 
 sub produce
 {
@@ -141,6 +142,7 @@ sub produce
         }
 }
 
+
 sub update_content {
         my ($self, $args) =@_;
 
@@ -150,34 +152,62 @@ sub update_content {
         return $self->id;
 }
 
-
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Testrun - A ResultSet description
+Tapper::Schema::TestrunDB::Result::Queue
 
+=head2 queued_testruns
 
-=head1 SYNOPSIS
+Return all scheduled testruns in current queue.
 
-Abstraction for the database table.
+=head2 get_first_fitting
 
- use Tapper::Schema::TestrunDB;
+Return first fitting testrun according to the scheduling rules.
 
+=head2 to_string
+
+Return a readable repesentation of Queue.
+
+=head2 is_member($head, @tail)
+
+Checks if the first element is already in the list of the remaining
+elements.
+
+=head2 ordered_preconditions
+
+Returns all preconditions in the order they need to be installed.
+
+=head2 producer
+
+Return instance of PreconditionProducer according to associated
+producer.
+
+=head2 produce
+
+Return associated producer.
+
+=head2 update_content
+
+Update I<priority> and I<active> flags.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

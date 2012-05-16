@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::User;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::User::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::User::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -15,14 +21,24 @@ __PACKAGE__->add_columns
      "password", { data_type => "VARCHAR", default_value => undef, is_nullable => 1, size => 255,                        },
     );
 
+(my $basepkg = __PACKAGE__) =~ s/::\w+$//;
+
 __PACKAGE__->set_primary_key("id");
+__PACKAGE__->add_unique_constraint( unique_login => [ qw/login/ ], );
+__PACKAGE__->has_many( contacts => "${basepkg}::Contact", { 'foreign.user_id' => 'self.id' });
+__PACKAGE__->has_many( notifications => "${basepkg}::Notification", { 'foreign.user_id' => 'self.id' });
 
 1;
 
+
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::ReportsDB::Result::User - A ResultSet description
-
+Tapper::Schema::ReportsDB::Result::User
 
 =head1 SYNOPSIS
 
@@ -30,20 +46,35 @@ Abstraction for the database table.
 
  use Tapper::Schema::ReportsDB;
 
+=head1 NAME
+
+Tapper::Schema::ReportsDB::Result::User - A ResultSet description
 
 =head1 AUTHOR
 
 AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
-
 =head1 BUGS
 
 None.
-
 
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
 
 This program is released under the following license: freebsd
+
+=head1 AUTHOR
+
+AMD OSRC Tapper Team <tapper@amd64.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+
+This is free software, licensed under:
+
+  The (two-clause) FreeBSD License
+
+=cut
 

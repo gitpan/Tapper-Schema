@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -12,6 +18,7 @@ __PACKAGE__->add_columns
      "arbitrary_id",  { data_type => "VARCHAR", default_value => undef,  is_nullable => 0, size => 255,                     },
      "report_id",     { data_type => "INT",     default_value => undef,  is_nullable => 0, size => 11, is_foreign_key => 1, },
      "primaryreport", { data_type => "INT",     default_value => undef,  is_nullable => 1, size => 11,                      },
+     "owner",         { data_type => "VARCHAR", default_value => undef,  is_nullable => 1, size => 255,                      },
     );
 
 __PACKAGE__->set_primary_key(qw/arbitrary_id report_id/);
@@ -19,6 +26,7 @@ __PACKAGE__->set_primary_key(qw/arbitrary_id report_id/);
 __PACKAGE__->belongs_to ( report => 'Tapper::Schema::ReportsDB::Result::Report', { 'foreign.id' => 'self.report_id' });
 
 # -------------------- methods on results --------------------
+
 
 sub groupreports {
         my ($self) = @_;
@@ -33,31 +41,30 @@ sub groupreports {
 
 1;
 
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::ReportsDB::ReportGroup - A ResultSet description
+Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary
 
+=head2 groupreports
 
-=head1 SYNOPSIS
-
-Abstraction for the database table.
-
- use Tapper::Schema::ReportsDB;
-
+Return all reports of this testrun report group.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

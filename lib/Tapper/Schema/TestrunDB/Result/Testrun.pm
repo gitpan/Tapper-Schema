@@ -1,4 +1,10 @@
 package Tapper::Schema::TestrunDB::Result::Testrun;
+BEGIN {
+  $Tapper::Schema::TestrunDB::Result::Testrun::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::Result::Testrun::VERSION = '4.0.1';
+}
 
 use 5.010;
 use strict;
@@ -39,11 +45,11 @@ __PACKAGE__->many_to_many ( preconditions              => "testrun_precondition"
 
 __PACKAGE__->might_have   ( testrun_scheduling         => "${basepkg}::TestrunScheduling",       { 'foreign.testrun_id' => 'self.id' });
 __PACKAGE__->might_have   ( scenario_element           => "${basepkg}::ScenarioElement",         { 'foreign.testrun_id' => 'self.id' });
+__PACKAGE__->might_have   ( state                      => "${basepkg}::State",                   { 'foreign.testrun_id' => 'self.id' });
 __PACKAGE__->has_many     ( message                    => "${basepkg}::Message",                 { 'foreign.testrun_id' => 'self.id' });
 
 
 # -------------------- methods on results --------------------
-
 
 
 sub to_string
@@ -61,12 +67,6 @@ sub to_string
                 );
 }
 
-=head2 is_member($head, @tail)
-
-Checks if the first element is already in the list of the remaining
-elements.
-
-=cut
 
 sub is_member
 {
@@ -74,11 +74,6 @@ sub is_member
         grep { $head->id eq $_->id } @tail;
 }
 
-=head2 ordered_preconditions
-
-Returns all preconditions in the order they need to be installed.
-
-=cut
 
 sub ordered_preconditions
 {
@@ -119,18 +114,6 @@ sub update_content {
         return $self->id;
 }
 
-=head2
-
-Insert a new testrun similar to this one. Arguments can be given to overwrite
-some values. All values of the new testrun not given as argument will be taken
-from $self.
-
-@param hash ref - overwrite arguments
-
-@return success - new testrun id
-@return error   - exception
-
-=cut
 
 sub rerun
 {
@@ -201,14 +184,6 @@ sub rerun
         return $testrun_new->id;
 }
 
-=head2 assign_preconditions
-
-Assign given preconditions to this testrun.
-
-@return success - 0
-@return error   - error message
-
-=cut
 
 sub assign_preconditions {
         my ($self, @preconditions) = @_;
@@ -227,17 +202,52 @@ sub assign_preconditions {
                 return "Can not assign $precondition_id: $@" if $@;
                 $succession++;
         }
-        return 0; 
+        return 0;
 }
+
+
+sub insert_preconditions {
+        my ($self, $position, @preconditions) = @_;
+
+        my $succession = $position;
+        my $testrun_precondition = $self->result_source->schema->resultset('TestrunPrecondition');
+
+        # move existing preconditions
+        my $remaining_preconditions = $testrun_precondition->search({testrun_id => $self->id,
+                                                                     succession => { '>=' => $position }});
+        while (my $remain = $remaining_preconditions->next) {
+                $remain->succession($remain->succession + int @preconditions);
+                $remain->update;
+        }
+
+        # assign new ones
+        foreach my $precondition_id (@preconditions) {
+                my $testrun_precondition = $testrun_precondition->new
+                    ({
+                      testrun_id      => $self->id,
+                      precondition_id => $precondition_id,
+                      succession      => $succession,
+                     });
+                eval {
+                        $testrun_precondition->insert;
+                };
+                return "Can not assign $precondition_id: $@" if $@;
+                $succession++;
+        }
+        return 0;
+}
+
 
 sub disassign_preconditions {
         my ($self, @preconditions) = @_;
 
+        my $table = $self->result_source->schema->resultset('TestrunPrecondition');
         my $preconditions;
         if (not @preconditions) {
-                $preconditions = $self->result_source->schema->resultset('TestrunPrecondition')->search({testrun_id => $self->id});
+                $preconditions = $table->search({testrun_id => $self->id});
         } else {
-                $preconditions = $self->result_source->schema->resultset('TestrunPrecondition')->search({testrun_id => $self->id, precondition_id => [ -or => [ @preconditions ]]});
+                $preconditions = $table->search({testrun_id => $self->id,
+                                                 precondition_id => [ -or => [ @preconditions ]]});
         }
 
 
@@ -247,34 +257,78 @@ sub disassign_preconditions {
         return 0;
 }
 
-
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Testrun - A ResultSet description
+Tapper::Schema::TestrunDB::Result::Testrun
 
+=head2 to_string
 
-=head1 SYNOPSIS
+Return printable representation.
 
-Abstraction for the database table.
+=head2 is_member($head, @tail)
 
- use Tapper::Schema::TestrunDB;
+Checks if the first element is already in the list of the remaining
+elements.
 
+=head2 ordered_preconditions
+
+Returns all preconditions in the order they need to be installed.
+
+=head2 update_content
+
+Update precondition from given params.
+
+=head2 rerun
+
+Insert a new testrun similar to this one. Arguments can be given to overwrite
+some values. All values of the new testrun not given as argument will be taken
+from $self.
+
+@param hash ref - overwrite arguments
+
+@return success - new testrun id
+@return error   - exception
+
+=head2 assign_preconditions
+
+Assign given preconditions to this testrun.
+
+@return success - 0
+@return error   - error message
+
+=head2 insert_preconditions
+
+Insert given preconditions (as id) starting at given position and push
+all later preconditions to make sure they come after the inserted.
+
+@param      int - starting position
+@param_list list of precondition_ids
+
+@return success - 0
+@return error   - error message
+
+=head2 disassign_preconditions
+
+Disconnect list of preconditions from a testrun.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

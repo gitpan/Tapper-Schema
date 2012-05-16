@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::Suite;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::Suite::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::Suite::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -19,6 +25,8 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->has_many   ( reports => 'Tapper::Schema::ReportsDB::Result::Report', { 'foreign.suite_id'        => 'self.id' });
 
+
+
 sub sqlt_deploy_hook
 {
         my ($self, $sqlt_table) = @_;
@@ -27,31 +35,30 @@ sub sqlt_deploy_hook
 
 1;
 
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::ReportsDB::Result::User - A ResultSet description
+Tapper::Schema::ReportsDB::Result::Suite
 
+=head2 sqlt_deploy_hook
 
-=head1 SYNOPSIS
-
-Abstraction for the database table.
-
- use Tapper::Schema::ReportsDB;
-
+Add an index over I<name> on deploy.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

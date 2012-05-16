@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::VERSION = '4.0.1';
+}
 
 use 5.010;
 use strict;
@@ -28,11 +34,14 @@ __PACKAGE__->set_primary_key(qw/testrun_id/);
 
 __PACKAGE__->has_many ( reportgrouptestruns => 'Tapper::Schema::ReportsDB::Result::ReportgroupTestrun', { 'foreign.testrun_id' => 'self.testrun_id' }, {cascade_delete => 0, cascade_copy => 0 } );
 
+
+
 sub groupreports {
         my ($self) = @_;
 
         $self->reportgrouptestruns->groupreports;
 }
+
 
 sub _success_ratio
 {
@@ -41,6 +50,7 @@ sub _success_ratio
         my $ratio = sprintf("%02.2f", $self->total ? ($self->passed / $self->total * 100) : 100 );
         return $ratio;
 }
+
 
 sub update_failed_passed
 {
@@ -70,30 +80,38 @@ sub update_failed_passed
 
 1;
 
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::ReportsDB::ReportgroupTestrunMeta.pm -  Meta info for Reports grouped by Testrun
+Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats
 
-=head1 SYNOPSIS
+=head2 groupreports
 
-Abstraction for the database table.
+Return all reports of this testrun report group.
 
- use Tapper::Schema::ReportsDB::ReportgroupTestrunMeta;
+=head2 _success_ratio
 
+Return this reports success ratio of passed vs. total.
+
+=head2 update_failed_passed
+
+Update reportgroup details, eg. on incoming new reports of this group.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

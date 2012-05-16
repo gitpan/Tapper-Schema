@@ -1,0 +1,47 @@
+Revision history for Tapper-Schema
+
+4.0.1     2012-05-16
+        - add transparently compressed reportfiles
+        - add notification info
+        - add deleted flag for queue and host
+        - add owner field for report groups
+        - add filter testruns by status
+        - add type to state messages
+        - remove producer from scheduler
+        - Moved schema upgrade files to lib/auto/
+        - big Dist::Zilla roundhouse kick
+
+2011-05-02  Maik Hentsche <maik.hentsche@amd.com>
+	* v3.0.11
+	
+	* lib/auto dir for upgrade scripts
+
+2011-04-07  Steffen Schwigon  <steffen.schwigon@amd.com>
+
+	* v3.0.10
+
+	* release version++ roundhouse kick
+
+2011-03-10 Steffen Schwigon <steffen.schwigon@amd.com>
+
+	* v3.0.4
+
+	* distro maintenance
+
+	* upgrade files for ReportsDB 2.010037 and TestrunDB 2.010036
+	* set created_at and updated_at automatically
+	* [FIX] Get rid of a warning
+
+2011-03-08 Steffen Schwigon <steffen.schwigon@amd.com>
+
+	* v3.0.2
+
+	* YAML.pm ins Weltall geschleudert
+
+	* Raise dependency to more stable DBIC
+
+2011-03-02  Steffen Schwigon  <steffen.schwigon@amd.com>
+
+	* v3.0
+
+	* first public CPAN release

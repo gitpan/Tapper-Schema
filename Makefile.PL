@@ -1,39 +1,75 @@
+
 use strict;
 use warnings;
 
-use inc::Module::Install;
+use 5.010;
 
-name     'Tapper-Schema';
-all_from 'lib/Tapper/Schema.pm';
-author   'AMD OSRC Tapper Team <tapper@amd64.org>';
-license  'freebsd';
+use ExtUtils::MakeMaker 6.30;
 
-build_requires 'Test::More'               => 0;
-build_requires 'Test::Perl::Critic'       => 0;
-build_requires 'Tapper::Config' => "3.000010";
-build_requires 'Tapper::Test' => "3.000010";
-build_requires 'Scalar::Util'             => 0;
-build_requires 'DateTime::Format::SQLite' => 0;
 
-author_requires 'Module::Install::WriteAll';
 
-requires 'perl'                                     => '5.010';
-requires 'DBIx::Class'                              => "0.08127";
-requires 'common::sense'                            => 0;
-requires 'Test::Fixture::DBIC::Schema'              => "0.03";
-requires 'DateTime::Format::Builder'                => 0;
-requires 'DateTime::Format::Strptime'               => 0;
-requires 'DateTime::Format::MySQL'                  => 0;
-requires 'DBIx::Class::TimeStamp'                   => '0.12';
-requires 'DBIx::Class::Schema::Versioned'           => 0;
-requires 'DBIx::Class::InflateColumn::Object::Enum' => 0;
-requires 'SQL::Translator'                          => 0;
-requires 'Tapper::TAP::Harness' => "3.000010";
-requires 'TAP::DOM'                                 => '0.10';
-#requires 'YAML'                                     => "0.72"; # we try to focus on one YAML to rule them all.
-requires 'YAML::Syck'                               => "1.17";
+my %WriteMakefileArgs = (
+  "ABSTRACT" => "Tapper - Database schemas for Tapper",
+  "AUTHOR" => "AMD OSRC Tapper Team <tapper\@amd64.org>",
+  "BUILD_REQUIRES" => {
+    "Scalar::Util" => 0,
+    "Test::Deep" => 0,
+    "Test::Fixture::DBIC::Schema" => 0,
+    "Test::More" => 0
+  },
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
+  },
+  "DISTNAME" => "Tapper-Schema",
+  "EXE_FILES" => [],
+  "LICENSE" => "open_source",
+  "NAME" => "Tapper::Schema",
+  "PREREQ_PM" => {
+    "Class::C3" => 0,
+    "Compress::Bzip2" => 0,
+    "DBIx::Class" => 0,
+    "DBIx::Class::Core" => 0,
+    "DBIx::Class::InflateColumn::DateTime" => 0,
+    "DBIx::Class::InflateColumn::Object::Enum" => 0,
+    "DBIx::Class::ResultSet" => 0,
+    "DBIx::Class::Schema" => 0,
+    "Data::Dumper" => 0,
+    "DateTime" => 0,
+    "MRO::Compat" => 0,
+    "Safe" => 0,
+    "TAP::DOM" => 0,
+    "Tapper::Config" => 0,
+    "Tapper::TAP::Harness" => 0,
+    "YAML::Syck" => 0,
+    "common::sense" => 0,
+    "parent" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
+  "VERSION" => "4.0.1",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
+);
 
-repository 'git://github.com/amd/Tapper-Schema.git';
-bugtracker 'http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Tapper-Schema';
 
-WriteAll;
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

@@ -1,4 +1,10 @@
 package Tapper::Schema::ReportsDB::Result::Report;
+BEGIN {
+  $Tapper::Schema::ReportsDB::Result::Report::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::ReportsDB::Result::Report::VERSION = '4.0.1';
+}
 
 use 5.010;
 use strict;
@@ -61,6 +67,7 @@ __PACKAGE__->has_many     ( files          => 'Tapper::Schema::ReportsDB::Result
 __PACKAGE__->has_many     ( reportsections => 'Tapper::Schema::ReportsDB::Result::ReportSection', { 'foreign.report_id' => 'self.id' });
 
 
+
 sub sqlt_deploy_hook
 {
         my ($self, $sqlt_table) = @_;
@@ -69,6 +76,8 @@ sub sqlt_deploy_hook
 
 #sub suite_name { shift->suite->name }
 #sub suite_name { my ($self, $arg) = @_; return $self->search({ "suite.name" => $arg })};
+
+
 
 sub sections_cpuinfo
 {
@@ -81,6 +90,7 @@ sub sections_cpuinfo
         return @cpus;
 }
 
+
 sub sections_osname
 {
         my ($self) = @_;
@@ -92,6 +102,7 @@ sub sections_osname
         return @cpus;
 }
 
+
 sub some_meta_available
 {
         my ($self) = @_;
@@ -102,6 +113,7 @@ sub some_meta_available
         }
         return 0;
 }
+
 
 sub get_cached_tapdom
 {
@@ -170,32 +182,45 @@ sub get_cached_tapdom
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
-Tapper::Schema::ReportsDB::Report - A ResultSet description
+Tapper::Schema::ReportsDB::Result::Report
 
+=head2 sqlt_deploy_hook
 
-=head1 SYNOPSIS
+Add an index over I<machine_name> on deploy.
 
-Abstraction for the database table.
+=head2 sections_cpuinfo
 
- use Tapper::Schema::ReportsDB;
+Return list of I<cpuinfo> of all report sections.
 
+=head2 sections_osname
+
+Return list of I<osname> of all report sections.
+
+=head2 some_meta_available
+
+Return list of I<some_meta_available> of all report sections.
+
+=head2 get_cached_tapdom
+
+Return a TAP-DOM of the report, creating it on demand.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

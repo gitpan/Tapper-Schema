@@ -1,4 +1,10 @@
 package Tapper::Schema::TestrunDB::Result::Precondition;
+BEGIN {
+  $Tapper::Schema::TestrunDB::Result::Precondition::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::Result::Precondition::VERSION = '4.0.1';
+}
 
 use strict;
 use warnings;
@@ -31,7 +37,7 @@ __PACKAGE__->many_to_many ( parent_testruns             => 'testrun_precondition
 
 # -------------------- methods in results --------------------
 
-# make a string with newlines to one line inserting \n
+
 sub one_line {
         my ($str) = @_;
 
@@ -40,12 +46,14 @@ sub one_line {
         $str;
 }
 
+
 sub quote {
         my ($str) = @_;
 
         my $d = Data::Dumper->new([$str])->Terse(1)->Indent(0);
         $d->Dump;
 }
+
 
 sub quote_and_one_line {
         my ($str) = @_;
@@ -54,6 +62,7 @@ sub quote_and_one_line {
         $str =~ s/\n/\\n/msg;
         $str;
 }
+
 
 sub to_string
 {
@@ -80,9 +89,11 @@ sub to_string
         return $str;
 }
 
+
 sub precondition_as_hash {
         Load(shift->precondition);
 }
+
 
 sub update_content {
         my ($self, $condition) = @_;
@@ -100,31 +111,54 @@ sub update_content {
         return $self->id;
 }
 
+1;
+
+
+
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Result::Precondition - A ResultSet description
+Tapper::Schema::TestrunDB::Result::Precondition
 
+=head2 one_line
 
-=head1 SYNOPSIS
+Make a string with newlines to one line inserting C<\n>.
 
-Abstraction for the database table.
+=head2 quote
 
- use Tapper::Schema::TestrunDB;
+Quote a string according to Perl eval rules.
 
+=head2 quote_and_one_line
+
+Combine C<quote> and C<one_line>.
+
+=head2 to_string
+
+Return printable representation.
+
+=head2 precondition_as_hash
+
+Provide the precondition YAML as actual data structure.
+
+=head2 update_content
+
+Update precondition from given params.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

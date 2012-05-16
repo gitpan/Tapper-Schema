@@ -1,4 +1,10 @@
 package Tapper::Schema::TestrunDB::Result::ScenarioElement;
+BEGIN {
+  $Tapper::Schema::TestrunDB::Result::ScenarioElement::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::Result::ScenarioElement::VERSION = '4.0.1';
+}
 
 use 5.010;
 use strict;
@@ -24,14 +30,6 @@ __PACKAGE__->belongs_to( testrun       => "${basepkg}::Testrun",         { 'fore
 __PACKAGE__->belongs_to( scenario      => "${basepkg}::Scenario",        { 'foreign.id'  => 'self.scenario_id'           });
 __PACKAGE__->has_many  ( peer_elements => "${basepkg}::ScenarioElement", { 'foreign.scenario_id'   => 'self.scenario_id' });
 
-=head2 peers_need_fitting
-
-Count how many elements of this scenario do not have is_fitted already
-set. This count may include $self.
-
-@return int - number of unfitted elements in same scenario
-
-=cut
 
 sub peers_need_fitting
 {
@@ -41,31 +39,34 @@ sub peers_need_fitting
 
 1;
 
+
+__END__
+=pod
+
+=encoding utf-8
+
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Result::Testgroup - Grouping of interdependent tests  
+Tapper::Schema::TestrunDB::Result::ScenarioElement
 
+=head2 peers_need_fitting
 
-=head1 SYNOPSIS
+Count how many elements of this scenario do not have is_fitted already
+set. This count may include $self.
 
-Abstraction for the database table.
-
- use Tapper::Schema::TestrunDB;
-
+@return int - number of unfitted elements in same scenario
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 

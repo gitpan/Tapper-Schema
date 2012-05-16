@@ -1,4 +1,7 @@
 package Tapper::Schema::ReportsDB;
+BEGIN {
+  $Tapper::Schema::ReportsDB::AUTHORITY = 'cpan:AMD';
+}
 
 use 5.010;
 
@@ -7,7 +10,7 @@ use warnings;
 
 # Only increment this version here on schema changes.
 # For everything else increment Tapper/Schema.pm.
-our $VERSION = '3.000001';
+our $VERSION = '3.000007';
 
 # avoid these warnings
 #   Subroutine initialize redefined at /2home/ss5/perl510/lib/site_perl/5.10.0/Class/C3.pm line 70.
@@ -37,6 +40,31 @@ sub backup
 }
 
 1;
+
+
+
+=pod
+
+=encoding utf-8
+
+=head1 NAME
+
+Tapper::Schema::ReportsDB
+
+=head1 AUTHOR
+
+AMD OSRC Tapper Team <tapper@amd64.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+
+This is free software, licensed under:
+
+  The (two-clause) FreeBSD License
+
+=cut
+
 
 __END__
 

@@ -1,13 +1,18 @@
 # TODO: rename into "(Scheduler|Result)::Job"?
 
 package Tapper::Schema::TestrunDB::Result::TestrunScheduling;
+BEGIN {
+  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::AUTHORITY = 'cpan:AMD';
+}
+{
+  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::VERSION = '4.0.1';
+}
 
 use YAML::Syck;
 use Safe;
 use common::sense;
 ## no critic (RequireUseStrict)
 use parent 'DBIx::Class';
-
 
 __PACKAGE__->load_components("InflateColumn::Object::Enum", "Core");
 __PACKAGE__->table("testrun_scheduling");
@@ -38,6 +43,7 @@ __PACKAGE__->has_many  ( requested_hosts    => "${basepkg}::TestrunRequestedHost
 
 # ----- scheduler related methods -----
 
+
 sub match_host {
         my ($self, $free_hosts) = @_;
 
@@ -62,6 +68,7 @@ sub match_host {
 }
 
 our @functions = ('&hostname');
+
 
 sub hostname (;$) ## no critic (ProhibitSubroutinePrototypes)
 {
@@ -140,8 +147,6 @@ sub match_feature {
         return;
 }
 
-# Checks a TestrunScheduling against a list of available hosts
-# returns the matching host
 
 sub fits {
         my ($self, $free_hosts) = @_;
@@ -184,6 +189,7 @@ sub fits {
         return;
 }
 
+
 sub mark_as_running
 {
         my ($self) = @_;
@@ -200,6 +206,7 @@ sub mark_as_running
         $self->update;
 }
 
+
 sub mark_as_finished
 {
         my ($self) = @_;
@@ -215,76 +222,59 @@ sub mark_as_finished
         $self->update;
 }
 
-sub produce_preconditions
-{
-        my ($self) = @_;
-        my $testrun = $self->testrun;
- PRECONDITION:
-        my @new_preconditions;
-        foreach my $precondition($testrun->ordered_preconditions) {
-                my $precond_hash = $precondition->precondition_as_hash;
-                if ( $precond_hash->{precondition_type} eq 'produce' ) {
-                        my $producer_name = $precond_hash->{producer};
-                        if (not $producer_name) {
-                                # TODO: warn here about precondition_type: produce without actual producer
-                                next PRECONDITION;
-                        }
-                        eval "use Tapper::MCP::Scheduler::PreconditionProducer::$producer_name"; ## no critic (ProhibitStringyEval)
-                        my $producer = "Tapper::MCP::Scheduler::PreconditionProducer::$producer_name"->new();
-                        my $retval = $producer->produce($self, $precond_hash);
-
-                        if ($retval->{error}) {
-                                return $retval->{error};
-                        }
-
-                        my $new_precondition_yaml = $retval->{precondition_yaml};
-                        if ($retval->{topic}) {
-                                $self->testrun->topic_name($retval->{topic});
-                                $self->testrun->update;
-                        }
-
-                        my @precond_array = Load($new_precondition_yaml);
-                        my @new_ids = $self->result_source->schema->resultset('Precondition')->add(\@precond_array);
-                        push @new_preconditions, @new_ids;
-                } else {
-                        push @new_preconditions, $precondition->id;
-                }
-
-        }
-        $self->testrun->disassign_preconditions();
-        $self->testrun->assign_preconditions(@new_preconditions);
-        return 0;
-}
-
-
-
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Result::PrePrecondition - A ResultSet description
+Tapper::Schema::TestrunDB::Result::TestrunScheduling
 
+=head2 match_host
 
-=head1 SYNOPSIS
+Return hosts that match scheduler criteria.
 
-Abstraction for the database table.
+=head2 hostname
 
- use Tapper::Schema::TestrunDB;
+Utility function in requested features to match against current or
+specified hostname.
 
+=head2 gen_schema_functions
+
+Generate utility function to be used by expressions in
+requested_features.
+
+=head2 match_feature
+
+Match list of free hosts against requested_features.
+
+=head2 fits
+
+Checks a TestrunScheduling against a list of available hosts and
+returns the matching host.
+
+=head2 mark_as_running
+
+Mark a testrun as currently I<running>.
+
+=head2 mark_as_finished
+
+Mark a testrun as I<finished>.
 
 =head1 AUTHOR
 
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
+AMD OSRC Tapper Team <tapper@amd64.org>
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 BUGS
+This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
 
-None.
+This is free software, licensed under:
 
+  The (two-clause) FreeBSD License
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
+=cut
 
