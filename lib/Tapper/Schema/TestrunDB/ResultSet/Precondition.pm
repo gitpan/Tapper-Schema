@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::ResultSet::Precondition::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::Precondition::VERSION = '4.0.1';
+  $Tapper::Schema::TestrunDB::ResultSet::Precondition::VERSION = '4.0.2';
 }
 
 use strict;

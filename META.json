@@ -29,6 +29,7 @@
             "DBIx::Class::InflateColumn::Object::Enum" : "0",
             "DBIx::Class::ResultSet" : "0",
             "DBIx::Class::Schema" : "0",
+            "DBIx::Class::TimeStamp" : "0",
             "Data::Dumper" : "0",
             "DateTime" : "0",
             "MRO::Compat" : "0",
@@ -66,7 +67,7 @@
          "web" : "http://github.com/amd/Tapper-Schema"
       }
    },
-   "version" : "4.0.1",
+   "version" : "4.0.2",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

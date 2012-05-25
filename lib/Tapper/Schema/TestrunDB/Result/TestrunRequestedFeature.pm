@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::TestrunRequestedFeature::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::TestrunRequestedFeature::VERSION = '4.0.1';
+  $Tapper::Schema::TestrunDB::Result::TestrunRequestedFeature::VERSION = '4.0.2';
 }
 
 use strict;

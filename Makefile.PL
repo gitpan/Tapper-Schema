@@ -33,6 +33,7 @@ my %WriteMakefileArgs = (
     "DBIx::Class::InflateColumn::Object::Enum" => 0,
     "DBIx::Class::ResultSet" => 0,
     "DBIx::Class::Schema" => 0,
+    "DBIx::Class::TimeStamp" => 0,
     "Data::Dumper" => 0,
     "DateTime" => 0,
     "MRO::Compat" => 0,
@@ -46,7 +47,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "4.0.1",
+  "VERSION" => "4.0.2",
   "test" => {
     "TESTS" => "t/*.t"
   }

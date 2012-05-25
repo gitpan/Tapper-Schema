@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::VERSION = '4.0.1';
+  $Tapper::Schema::VERSION = '4.0.2';
 }
 # ABSTRACT: Tapper - Database schemas for Tapper
 

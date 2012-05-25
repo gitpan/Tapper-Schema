@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportSection::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportSection::VERSION = '4.0.1';
+  $Tapper::Schema::ReportsDB::Result::ReportSection::VERSION = '4.0.2';
 }
 
 use strict;

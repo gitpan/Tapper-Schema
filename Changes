@@ -1,5 +1,8 @@
 Revision history for Tapper-Schema
 
+4.0.2     2012-05-24
+        - fix missing dependencies
+
 4.0.1     2012-05-16
         - add transparently compressed reportfiles
         - add notification info
