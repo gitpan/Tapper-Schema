@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportSection::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportSection::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::ReportSection::VERSION = '4.1.0';
 }
 
 use strict;
@@ -29,8 +29,8 @@ __PACKAGE__->add_columns
      "language_description",    { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      "cpuinfo",                 { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      "bios",                    { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
-     "ram",                     { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 50,                      },
-     "uptime",                  { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 50,                      },
+     "ram",                     { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
+     "uptime",                  { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      "lspci",                   { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      "lsusb",                   { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      # context
@@ -41,7 +41,7 @@ __PACKAGE__->add_columns
      "tags",                    { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      # xen info
      "xen_changeset",           { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
-     "xen_hvbits",              { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 10,                      },
+     "xen_hvbits",              { data_type => "VARCHAR",  default_value => undef, is_nullable => 1, size => 255,                     },
      "xen_dom0_kernel",         { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      "xen_base_os_description", { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
      "xen_guest_description",   { data_type => "TEXT",     default_value => undef, is_nullable => 1,                                  },
@@ -104,6 +104,13 @@ sub some_meta_available
 }
 
 
+sub sqlt_deploy_hook
+{
+        my ($self, $sqlt_table) = @_;
+        $sqlt_table->add_index(name => 'reportsection_idx_report_id', fields => ['report_id']);
+}
+
+
 1;
 
 
@@ -126,6 +133,10 @@ Abstraction for the database table.
 
 Return whether there is at least one of the standard meta info headers
 contained.
+
+=head2 sqlt_deploy_hook
+
+Add useful indexes at deploy time.
 
 =head1 NAME
 

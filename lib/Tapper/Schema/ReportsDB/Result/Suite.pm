@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::Suite::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Suite::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::Suite::VERSION = '4.1.0';
 }
 
 use strict;
@@ -17,7 +17,7 @@ __PACKAGE__->add_columns
     (
      "id",          { data_type => "INT",     default_value => undef, is_nullable => 0, size => 11, is_auto_increment => 1, },
      "name",        { data_type => "VARCHAR", default_value => undef, is_nullable => 0, size => 255,                        },
-     "type",        { data_type => "VARCHAR", default_value => undef, is_nullable => 0, size => 50,                         },
+     "type",        { data_type => "VARCHAR", default_value => undef, is_nullable => 0, size => 255,                        },
      "description", { data_type => "TEXT",    default_value => undef, is_nullable => 0,                                     },
     );
 
@@ -46,7 +46,7 @@ Tapper::Schema::ReportsDB::Result::Suite
 
 =head2 sqlt_deploy_hook
 
-Add an index over I<name> on deploy.
+Add useful indexes at deploy time.
 
 =head1 AUTHOR
 

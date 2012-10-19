@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::VERSION = '4.1.0';
 }
 
 use 5.010;
@@ -27,7 +27,9 @@ sub max_priority_seq {
            { prioqueue_seq => { '>', 0 } },
            {
             select => [ { max => 'prioqueue_seq' } ],
-            as     => [ 'max_seq' ], }
+            as     => [ 'max_seq' ],
+            rows   => 1,
+           }
           )->first;
         return $job_with_max_seq->get_column('max_seq') if $job_with_max_seq and $job_with_max_seq->get_column('max_seq');
         return 0;

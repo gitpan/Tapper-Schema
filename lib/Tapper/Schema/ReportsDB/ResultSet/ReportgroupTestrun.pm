@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::VERSION = '4.1.0';
 }
 
 use strict;
@@ -15,7 +15,7 @@ use parent 'DBIx::Class::ResultSet';
 sub groupreports {
         my ($self) = @_;
 
-        $self->first->groupreports;
+        $self->search({}, {rows => 1})->first->groupreports;
 }
 
 1;

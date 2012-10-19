@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::VERSION = '4.1.0';
 }
 
 use strict;
@@ -39,6 +39,14 @@ sub groupreports {
         return $self->result_source->schema->resultset('Report')->search({ id => [ -or => [ @report_ids ] ] });
 }
 
+
+sub sqlt_deploy_hook
+{
+        my ($self, $sqlt_table) = @_;
+        # $sqlt_table->add_index(name => 'reportgrouparbitrary_idx_report_id', fields => ['report_id']); # implicitely done(?)
+}
+
+
 1;
 
 __END__
@@ -53,6 +61,10 @@ Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary
 =head2 groupreports
 
 Return all reports of this testrun report group.
+
+=head2 sqlt_deploy_hook
+
+Add useful indexes at deploy time.
 
 =head1 AUTHOR
 

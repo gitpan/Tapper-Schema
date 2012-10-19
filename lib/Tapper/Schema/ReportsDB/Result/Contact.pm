@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::Contact::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Contact::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::Contact::VERSION = '4.1.0';
 }
 
 use strict;
@@ -16,7 +16,7 @@ __PACKAGE__->load_components(qw/InflateColumn::DateTime Core/);
 __PACKAGE__->table("contact");
 __PACKAGE__->add_columns
     ( "id",        { data_type => "INT",       default_value => undef,                is_nullable => 0, size => 11, is_auto_increment => 1, },
-     "user_id",    { data_type => "INT",       default_value => undef,                is_nullable => 0, size => 11, is_foreign_key    => 1, },
+     "owner_id",   { data_type => "INT",       default_value => undef,                is_nullable => 0, size => 11, is_foreign_key    => 1, extra => { renamed_from => 'user_id'  }, },
      "address",    { data_type => "VARCHAR",   default_value => undef,                is_nullable => 0, size => 255, },
      "protocol",   { data_type => "VARCHAR",   default_value => undef,                is_nullable => 0, size => 255, },
      "created_at", { data_type => "TIMESTAMP", default_value => \'CURRENT_TIMESTAMP', is_nullable => 1, },
@@ -27,7 +27,7 @@ __PACKAGE__->add_columns
 (my $basepkg = __PACKAGE__) =~ s/::\w+$//;
 
 __PACKAGE__->set_primary_key("id");
-__PACKAGE__->belongs_to( user => "${basepkg}::User", { 'foreign.id' => 'self.user_id' });
+__PACKAGE__->belongs_to( owner => "${basepkg}::Owner", { 'foreign.id' => 'self.owner_id' });
 
 
 1;
@@ -49,7 +49,7 @@ Abstraction for the database table.
 
 =head1 NAME
 
-Tapper::Schema::ReportsDB::Result::Contact - Keep contact information for users
+Tapper::Schema::ReportsDB::Result::Contact - Keep contact information for owners
 
 =head1 AUTHOR
 

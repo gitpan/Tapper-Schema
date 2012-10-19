@@ -1,9 +1,11 @@
 package Tapper::Schema;
+# git description: v4.0.2-43-g59e0706
+
 BEGIN {
   $Tapper::Schema::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::VERSION = '4.0.2';
+  $Tapper::Schema::VERSION = '4.1.0';
 }
 # ABSTRACT: Tapper - Database schemas for Tapper
 

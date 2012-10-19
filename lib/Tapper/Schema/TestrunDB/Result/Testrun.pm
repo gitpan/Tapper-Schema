@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::Testrun::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Testrun::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::Result::Testrun::VERSION = '4.1.0';
 }
 
 use 5.010;
@@ -25,7 +25,7 @@ __PACKAGE__->add_columns
      "starttime_testrun",         { data_type => "DATETIME",  default_value => undef, is_nullable => 1,                                        },
      "starttime_test_program",    { data_type => "DATETIME",  default_value => undef, is_nullable => 1,                                        },
      "endtime_test_program",      { data_type => "DATETIME",  default_value => undef, is_nullable => 1,                                        },
-     "owner_user_id",             { data_type => "INT",       default_value => undef, is_nullable => 1, size => 11,    is_foreign_key => 1,    },
+     "owner_id",                  { data_type => "INT",       default_value => undef, is_nullable => 1, size => 11,    is_foreign_key => 1,    },
      "testplan_id",               { data_type => "INT",       default_value => undef, is_nullable => 1, size => 11,    is_foreign_key => 1,    },
      "wait_after_tests",          { data_type => "INT",       default_value => 0,     is_nullable => 1, size => 1,                             },
      "rerun_on_error",            { data_type => "INT",       default_value => 0,     is_nullable => 1, size => 11,                            }, # number of times to rerun this test on error
@@ -37,7 +37,7 @@ __PACKAGE__->set_primary_key("id");
 
 (my $basepkg = __PACKAGE__) =~ s/::\w+$//;
 
-__PACKAGE__->belongs_to   ( owner                      => "${basepkg}::User",                    { 'foreign.id'   => 'self.owner_user_id' });
+__PACKAGE__->belongs_to   ( owner                      => "${basepkg}::Owner",                   { 'foreign.id'   => 'self.owner_id' });
 __PACKAGE__->belongs_to   ( testplan_instance          => "${basepkg}::TestplanInstance",        { 'foreign.id'   => 'self.testplan_id'   });
 
 __PACKAGE__->has_many     ( testrun_precondition       => "${basepkg}::TestrunPrecondition",     { 'foreign.testrun_id' => 'self.id' });
@@ -109,7 +109,7 @@ sub update_content {
         $self->shortname             ( $args->{shortname}             ) if $args->{shortname};
         $self->topic_name            ( $args->{topic}                 ) if $args->{topic};
         $self->starttime_earliest    ( $args->{date}                  ) if $args->{date};
-        $self->owner_user_id         ( $args->{owner_user_id}         ) if $args->{owner_user_id};
+        $self->owner_id              ( $args->{owner_id}              ) if $args->{owner_id};
         $self->update;
         return $self->id;
 }
@@ -125,11 +125,11 @@ sub rerun
               shortname             => $args->{shortname}             || $self->shortname,
               topic_name            => $args->{topic_name}            || $self->topic_name,
               starttime_earliest    => $args->{earliest}              || DateTime->now,
-              owner_user_id         => $args->{owner_user_id}         || $self->owner_user_id,
+              owner_id              => $args->{owner_id}              || $self->owner_id,
              });
 
         # prepare job scheduling infos
-        my $testrunscheduling = $self->result_source->schema->resultset('TestrunScheduling')->search({ testrun_id => $self->id })->first;
+        my $testrunscheduling = $self->result_source->schema->resultset('TestrunScheduling')->search({ testrun_id => $self->id }, {rows => 1})->first;
         my ($queue_id, $host_id, $auto_rerun, $requested_features, $requested_hosts);
         if ($testrunscheduling) {
                 $queue_id           = $testrunscheduling->queue_id;
@@ -138,7 +138,7 @@ sub rerun
                 $requested_features = $testrunscheduling->requested_features;
                 $requested_hosts    = $testrunscheduling->requested_hosts;
         } else {
-                my $queue = $self->result_source->schema->resultset('Queue')->search({ name => "AdHoc"} )->first;
+                my $queue = $self->result_source->schema->resultset('Queue')->search({ name => "AdHoc"}, {rows => 1})->first;
                 if (not $queue) {
                         die "No default queue 'AdHoc' found.";
                 }
@@ -257,6 +257,13 @@ sub disassign_preconditions {
         return 0;
 }
 
+
+sub sqlt_deploy_hook
+{
+        my ($self, $sqlt_table) = @_;
+        $sqlt_table->add_index(name => 'testrun_idx_created_at',   fields => ['created_at']);
+}
+
 1;
 
 __END__
@@ -317,6 +324,10 @@ all later preconditions to make sure they come after the inserted.
 =head2 disassign_preconditions
 
 Disconnect list of preconditions from a testrun.
+
+=head2 sqlt_deploy_hook
+
+Add useful indexes at deploy time.
 
 =head1 AUTHOR
 

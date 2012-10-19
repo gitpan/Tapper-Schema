@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportgroupTestrun::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrun::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrun::VERSION = '4.1.0';
 }
 
 use 5.010;
@@ -41,6 +41,13 @@ sub groupreports {
         return $self->result_source->schema->resultset('Report')->search({ id => [ -or => [ @report_ids ] ] });
 }
 
+
+sub sqlt_deploy_hook
+{
+        my ($self, $sqlt_table) = @_;
+        $sqlt_table->add_index(name => 'reportgrouptestrun_idx_report_id', fields => ['report_id']);
+}
+
 1;
 
 __END__
@@ -55,6 +62,10 @@ Tapper::Schema::ReportsDB::Result::ReportgroupTestrun
 =head2 groupreports
 
 Return group of all reports belonging to this same testrun.
+
+=head2 sqlt_deploy_hook
+
+Add useful indexes at deploy time.
 
 =head1 AUTHOR
 

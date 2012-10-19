@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::ResultSet::Queue::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::Queue::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::ResultSet::Queue::VERSION = '4.1.0';
 }
 
 use 5.010;
@@ -12,18 +12,6 @@ use warnings;
 
 use parent 'DBIx::Class::ResultSet';
 use Data::Dumper;
-
-
-sub official_queuelist {
-        my ($self) = @_;
-
-        my %queues;
-        while (my $q = $self->next) {
-                next if not $q->active;
-                $queues{$q->name} = $q;
-        }
-        return \%queues;
-}
 
 1;
 
@@ -35,10 +23,6 @@ __END__
 =head1 NAME
 
 Tapper::Schema::TestrunDB::ResultSet::Queue
-
-=head2 official_queuelist
-
-Return hash of active queues.
 
 =head1 AUTHOR
 

@@ -16,24 +16,24 @@ BEGIN {
 }
 
 # -----------------------------------------------------------------------------------------------------------------
-construct_fixture( schema  => testrundb_schema, fixture => 't/fixtures/testrundb/user.yml' );
+construct_fixture( schema  => testrundb_schema, fixture => 't/fixtures/testrundb/owner.yml' );
 # -----------------------------------------------------------------------------------------------------------------
 
 ok( testrundb_schema->get_db_version,  "schema is versioned" );
 diag testrundb_schema->get_db_version;
 
-is( testrundb_schema->resultset('User')->count, 3,  "user count" );
+is( testrundb_schema->resultset('Owner')->count, 3,  "owner count" );
 
-my $user = testrundb_schema->resultset('User')->search->first;
-is($user->name,     'affe',       "user value 1");
-is($user->login,    'zomtec',     "user value 2");
-is($user->password, 'verysecret', "user value 3");
+my $owner = testrundb_schema->resultset('Owner')->search->first;
+is($owner->name,     'affe',       "owner value 1");
+is($owner->login,    'zomtec',     "owner value 2");
+is($owner->password, 'verysecret', "owner value 3");
 
 
-$user = testrundb_schema->resultset('User')->search({ login => 'ss5'})->first;
-is($user->name,     'Steffen Schwigon@bascha', 'user ss5 value 1');
-is($user->login,    'ss5',                     'user ss5 value 2');
-is($user->password, 'verysecret',              'user ss5 value 3');
+$owner = testrundb_schema->resultset('Owner')->search({ login => 'ss5'})->first;
+is($owner->name,     'Steffen Schwigon@bascha', 'owner ss5 value 1');
+is($owner->login,    'ss5',                     'owner ss5 value 2');
+is($owner->password, 'verysecret',              'owner ss5 value 3');
 
 
 # -----------------------------------------------------------------------------------------------------------------
@@ -63,8 +63,8 @@ is($perfmon_run->topic_name, 'Software', "testrun topic_name");
 #is($perfmon_run->topic->description, 'any non-kernel software, e.g., libraries, programs', "testrun topic->description");
 is($perfmon_run->rerun_on_error, 0, "testrun rerun_on_error");  # default value
 
-is($perfmon_run->owner->name, 'Steffen Schwigon', "testrun user->name");
-is($perfmon_run->owner->login, 'sschwigo', "testrun user->login");
+is($perfmon_run->owner->name, 'Steffen Schwigon', "testrun owner->name");
+is($perfmon_run->owner->login, 'sschwigo', "testrun owner->login");
 
 # --------------------------------------------------
 
@@ -202,5 +202,18 @@ construct_fixture( schema  => testrundb_schema, fixture => 't/fixtures/testrundb
 
 
 is(testrundb_schema->resultset('Testrun')->status('finished')->count, 1, 'One testrun which is finished in testrun_scheduling');
+
+# -----------------------------------------------------------------------------------------------------------------
+construct_fixture( schema  => testrundb_schema, fixture => 't/fixtures/testrundb/denyhost.yaml' );
+# -----------------------------------------------------------------------------------------------------------------
+
+
+my $queue = testrundb_schema->resultset('Queue')->find({name => 'queue_with_deny'});
+
+my @host_names = map {$_->host->name} $queue->queuehosts->all;
+is_deeply(\@host_names, ['iring', 'bullock'], 'Expected hosts bound to queue');
+@host_names = map {$_->host->name} $queue->deniedhosts->all;
+is_deeply(\@host_names, ['dickstone', 'athene'], 'Expected hosts denied from queue');
+
 
 done_testing();

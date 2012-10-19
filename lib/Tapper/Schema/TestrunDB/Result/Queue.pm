@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::Queue::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Queue::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::Result::Queue::VERSION = '4.1.0';
 }
 
 use strict;
@@ -31,6 +31,7 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint( unique_queue_name => [ qw/name/ ], );
 __PACKAGE__->has_many ( testrunschedulings => 'Tapper::Schema::TestrunDB::Result::TestrunScheduling', { 'foreign.queue_id' => 'self.id' });
 __PACKAGE__->has_many ( queuehosts         => "${basepkg}::QueueHost",         { 'foreign.queue_id' => 'self.id' });
+__PACKAGE__->has_many ( deniedhosts         => "${basepkg}::DeniedHost",       { 'foreign.queue_id' => 'self.id' });
 
 # -------------------- methods on results --------------------
 

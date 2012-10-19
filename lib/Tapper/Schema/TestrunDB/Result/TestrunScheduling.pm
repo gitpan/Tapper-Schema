@@ -5,11 +5,10 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::TestrunScheduling::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::VERSION = '4.1.0';
 }
 
 use YAML::Syck;
-use Safe;
 use common::sense;
 ## no critic (RequireUseStrict)
 use parent 'DBIx::Class';
@@ -41,160 +40,11 @@ __PACKAGE__->has_many  ( requested_features => "${basepkg}::TestrunRequestedFeat
 __PACKAGE__->has_many  ( requested_hosts    => "${basepkg}::TestrunRequestedHost",    { 'foreign.testrun_id' => 'self.testrun_id' });
 
 
-# ----- scheduler related methods -----
-
-
-sub match_host {
-        my ($self, $free_hosts) = @_;
-
-        foreach my $req_host ($self->requested_hosts->all)
-        {
-                no strict 'refs'; ## no critic (ProhibitNoStrict)
-        FREE_HOST:
-                foreach my $free_host( map {$_->{host} } @$free_hosts) {
-                        if ($free_host->queuehosts->count){
-                                QUEUE_CHECK:
-                                {
-                                        foreach my $queuehost($free_host->queuehosts->all) {
-                                                last QUEUE_CHECK if $queuehost->queue->id == $self->queue->id;
-                                        }
-                                        next FREE_HOST;
-                                }
-                        }
-                        return $free_host if $free_host->name eq $req_host->host->name;
-                }
-        }
-        return;
-}
-
-our @functions = ('&hostname');
-
-
-sub hostname (;$) ## no critic (ProhibitSubroutinePrototypes)
-{
-        my ($given) = @_;
-
-        if ($given) {
-                # available
-                return $given ~~ $_->{features}->{hostname};
-        } else {
-                return $_->{features}->{hostname};
-        }
-}
-
-
-sub gen_schema_functions
-{
-        # vendor("AMD");        # with optional argument the value is checked against available features and returns the matching features
-        # vendor eq "AMD";      # without argument returns the value
-        # $_ is the current context inside the while-loop (see below) where the eval happens
-        my ($self) = @_;
-
-        my $features = $self->result_source->schema->resultset('HostFeature')->search(
-                                                                                            {
-                                                                                            },
-                                                                                            {
-                                                                                             columns => [ qw/entry/ ],
-                                                                                             distinct => 1,
-                                                                                            });
-        while ( my $feature = $features->next ) {
-                my $entry = $feature->entry;
-                push @functions, "&".$entry;
-                my $eval_string = "sub $entry (;\$)";
-                $eval_string   .= "{
-                            my (\$given) = \@_;
-
-                            if (\$given) {
-                                    # available
-                                    return \$given ~~ \$_->{features}->{$entry};
-                            } else {
-                                    return \$_->{features}->{$entry} };
-                    }";
-                eval $eval_string;                ## no critic
-        }
-}
-
-
-sub match_feature {
-        my ($self, $free_hosts) = @_;
- HOST:
-        foreach my $host( @$free_hosts )
-        {
-                # filter out queuebound hosts
-                if ($host->{host}->queuehosts->count){
-                QUEUE_CHECK:
-                        {
-                                foreach my $queuehost($host->{host}->queuehosts->all) {
-                                        last QUEUE_CHECK if $queuehost->queue->id == $self->queue->id;
-                                }
-                                next HOST;
-                        }
-                }
-
-                $_ = $host;
-                my $compartment = Safe->new();
-                $compartment->permit(qw(:base_core));
-                $compartment->share(@functions);
-
-                foreach my $this_feature( $self->requested_features->all )
-                {
-                        my $success = $compartment->reval($this_feature->feature);
-                        print STDERR "Error in TestRequest.fits: ", $@ if $@;
-                        next HOST if not $success;
-                }
-                return $host->{host};
-        }
-        return;
-}
-
-
-sub fits {
-        my ($self, $free_hosts) = @_;
-
-        if (not $free_hosts)
-        {
-                return;
-        }
-        elsif ($self->requested_hosts->count)
-        {
-                my $host = $self->match_host($free_hosts);
-                if ($host)
-                {
-                        return $host;
-                }
-                elsif ($self->requested_features->count)
-                {
-                        $host = $self->match_feature($free_hosts);
-                        return $host if $host;
-                }
-        }
-        elsif ($self->requested_features->count) # but no wanted hostnames
-        {
-                my $host = $self->match_feature($free_hosts);
-                return $host if $host;
-        }
-        else # free_hosts but no wanted hostnames and no requested_features
-        {
-                foreach my $host (map {$_->{host} } @$free_hosts) {
-                        if ($host->queuehosts->count){
-                                foreach my $queuehost($host->queuehosts->all) {
-                                        return $host if $queuehost->queue->id == $self->queue->id;
-                                }
-                        } else {
-                                return $host;
-                        }
-
-                }
-        }
-        return;
-}
 
 
 sub mark_as_running
 {
         my ($self) = @_;
-
-        use Data::Dumper;
 
         # set scheduling info
         $self->status("running");
@@ -222,6 +72,14 @@ sub mark_as_finished
         $self->update;
 }
 
+
+sub sqlt_deploy_hook
+{
+        my ($self, $sqlt_table) = @_;
+        $sqlt_table->add_index(name => 'testrun_scheduling_idx_created_at',   fields => ['created_at']);
+        $sqlt_table->add_index(name => 'testrun_scheduling_idx_status',       fields => ['status']);
+}
+
 1;
 
 __END__
@@ -233,29 +91,6 @@ __END__
 
 Tapper::Schema::TestrunDB::Result::TestrunScheduling
 
-=head2 match_host
-
-Return hosts that match scheduler criteria.
-
-=head2 hostname
-
-Utility function in requested features to match against current or
-specified hostname.
-
-=head2 gen_schema_functions
-
-Generate utility function to be used by expressions in
-requested_features.
-
-=head2 match_feature
-
-Match list of free hosts against requested_features.
-
-=head2 fits
-
-Checks a TestrunScheduling against a list of available hosts and
-returns the matching host.
-
 =head2 mark_as_running
 
 Mark a testrun as currently I<running>.
@@ -263,6 +98,10 @@ Mark a testrun as currently I<running>.
 =head2 mark_as_finished
 
 Mark a testrun as I<finished>.
+
+=head2 sqlt_deploy_hook
+
+Add useful indexes at deploy time.
 
 =head1 AUTHOR
 

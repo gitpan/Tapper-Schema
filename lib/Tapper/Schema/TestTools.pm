@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestTools::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestTools::VERSION = '4.0.2';
+  $Tapper::Schema::TestTools::VERSION = '4.1.0';
 }
 
 # inspired by Test::Fixture::DBIC::Schema

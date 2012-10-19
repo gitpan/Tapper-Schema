@@ -1,9 +1,9 @@
-package Tapper::Schema::TestrunDB::Result::User;
+package Tapper::Schema::TestrunDB::Result::Owner;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::User::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::Owner::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::User::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::Result::Owner::VERSION = '4.1.0';
 }
 
 use strict;
@@ -12,7 +12,7 @@ use warnings;
 use parent 'DBIx::Class';
 
 __PACKAGE__->load_components("Core");
-__PACKAGE__->table("user");
+__PACKAGE__->table("owner");
 __PACKAGE__->add_columns
     (
      "id",       { data_type => "INT",     default_value => undef, is_nullable => 0, size => 11, is_auto_increment => 1, },
@@ -33,7 +33,7 @@ __END__
 
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Result::User
+Tapper::Schema::TestrunDB::Result::Owner
 
 =head1 SYNOPSIS
 
@@ -43,7 +43,7 @@ Abstraction for the database table.
 
 =head1 NAME
 
-Tapper::Schema::TestrunDB::Result::User - A ResultSet description
+Tapper::Schema::TestrunDB::Result::Owner - A ResultSet description
 
 =head1 AUTHOR
 

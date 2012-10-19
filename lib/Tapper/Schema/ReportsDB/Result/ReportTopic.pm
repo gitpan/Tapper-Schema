@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportTopic::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportTopic::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::ReportTopic::VERSION = '4.1.0';
 }
 
 use strict;
@@ -17,7 +17,7 @@ __PACKAGE__->add_columns
     (
      "id",                        { data_type => "INT",      default_value => undef,  is_nullable => 0, size => 11, is_auto_increment => 1, },
      "report_id",                 { data_type => "INT",      default_value => undef,  is_nullable => 0, size => 11, is_foreign_key => 1,    },
-     "name",                      { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 50,                         },
+     "name",                      { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                        },
      "details",                   { data_type => "TEXT",     default_value => "",     is_nullable => 0,                                     },
     );
 

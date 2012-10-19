@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::ResultSet::Testrun::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::Testrun::VERSION = '4.0.2';
+  $Tapper::Schema::TestrunDB::ResultSet::Testrun::VERSION = '4.1.0';
 }
 
 use strict;
@@ -80,7 +80,7 @@ sub add {
               shortname             => $args->{shortname},
               topic_name            => $args->{topic_name},
               starttime_earliest    => $args->{earliest},
-              owner_user_id         => $args->{owner_user_id},
+              owner_id              => $args->{owner_id},
               rerun_on_error        => $args->{rerun_on_error},
              });
 

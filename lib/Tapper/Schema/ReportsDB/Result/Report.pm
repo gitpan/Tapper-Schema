@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::Report::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Report::VERSION = '4.0.2';
+  $Tapper::Schema::ReportsDB::Result::Report::VERSION = '4.1.0';
 }
 
 use 5.010;
@@ -20,10 +20,10 @@ __PACKAGE__->add_columns
     (
      "id",                      { data_type => "INT",      default_value => undef,  is_nullable => 0, size => 11, is_auto_increment => 1,     },
      "suite_id",                { data_type => "INT",      default_value => undef,  is_nullable => 1, size => 11, is_foreign_key => 1,        },
-     "suite_version",           { data_type => "VARCHAR",  default_value => undef,  is_nullable => 1, size => 11,                             },
-     "reportername",            { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 100,                            },
-     "peeraddr",                { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 20,                             },
-     "peerport",                { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 20,                             },
+     "suite_version",           { data_type => "VARCHAR",  default_value => undef,  is_nullable => 1, size => 255,                            },
+     "reportername",            { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                            },
+     "peeraddr",                { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                            },
+     "peerport",                { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                            },
      "peerhost",                { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                            },
      #
      # tap parse result and its human interpretation
@@ -47,7 +47,7 @@ __PACKAGE__->add_columns
      "starttime_test_program",  { data_type => "DATETIME", default_value => undef,  is_nullable => 1,                                         },
      "endtime_test_program",    { data_type => "DATETIME", default_value => undef,  is_nullable => 1,                                         },
      #
-     "machine_name",            { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 50,                             },
+     "machine_name",            { data_type => "VARCHAR",  default_value => "",     is_nullable => 1, size => 255,                            },
      "machine_description",     { data_type => "TEXT",     default_value => "",     is_nullable => 1,                                         },
      #
      "created_at",              { data_type => "DATETIME", default_value => undef,  is_nullable => 0, set_on_create => 1,                     },
@@ -72,6 +72,8 @@ sub sqlt_deploy_hook
 {
         my ($self, $sqlt_table) = @_;
         $sqlt_table->add_index(name => 'report_idx_machine_name', fields => ['machine_name']);
+        # $sqlt_table->add_index(name => 'report_idx_suite_id',     fields => ['suite_id']); # implicitely done(?)
+        $sqlt_table->add_index(name => 'report_idx_created_at',   fields => ['created_at']);
 }
 
 #sub suite_name { shift->suite->name }
@@ -192,7 +194,7 @@ Tapper::Schema::ReportsDB::Result::Report
 
 =head2 sqlt_deploy_hook
 
-Add an index over I<machine_name> on deploy.
+Add useful indexes at deploy time.
 
 =head2 sections_cpuinfo
 

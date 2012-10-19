@@ -15,7 +15,7 @@ my %WriteMakefileArgs = (
     "Scalar::Util" => 0,
     "Test::Deep" => 0,
     "Test::Fixture::DBIC::Schema" => 0,
-    "Test::More" => 0
+    "Test::More" => "0.88"
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -36,8 +36,9 @@ my %WriteMakefileArgs = (
     "DBIx::Class::TimeStamp" => 0,
     "Data::Dumper" => 0,
     "DateTime" => 0,
+    "DateTime::Format::MySQL" => 0,
+    "DateTime::Format::Pg" => 0,
     "MRO::Compat" => 0,
-    "Safe" => 0,
     "TAP::DOM" => 0,
     "Tapper::Config" => 0,
     "Tapper::TAP::Harness" => 0,
@@ -47,7 +48,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "4.0.2",
+  "VERSION" => "4.1.0",
   "test" => {
     "TESTS" => "t/*.t"
   }

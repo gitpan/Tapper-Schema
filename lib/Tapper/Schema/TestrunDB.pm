@@ -10,7 +10,7 @@ use warnings;
 
 # Only increment this version here on schema changes.
 # For everything else increment Tapper/Schema.pm.
-our $VERSION = '3.000005';
+our $VERSION = '4.001004';
 
 # avoid these warnings
 #   Subroutine initialize redefined at /2home/ss5/perl510/lib/site_perl/5.10.0/Class/C3.pm line 70.
@@ -27,8 +27,8 @@ our $NULL  = 'NULL';
 our $DELIM = ' | ';
 
 __PACKAGE__->load_components(qw/+DBIx::Class::Schema::Versioned/);
-__PACKAGE__->upgrade_directory('./upgrades/');
-__PACKAGE__->backup_directory('./upgrades/');
+__PACKAGE__->upgrade_directory('./lib/auto/Tapper/Schema/');
+__PACKAGE__->backup_directory('./lib/auto/Tapper/Schema/');
 
 __PACKAGE__->load_namespaces;
 
@@ -51,7 +51,6 @@ sub _yaml_ok {
 }
 
 1;
-
 
 __END__
 =pod
