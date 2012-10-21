@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::Host::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Host::VERSION = '4.1.0';
+  $Tapper::Schema::TestrunDB::Result::Host::VERSION = '4.1.1';
 }
 
 use 5.010;

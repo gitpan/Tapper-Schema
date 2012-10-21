@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::View010TestrunOverviewReports::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::View010TestrunOverviewReports::VERSION = '4.1.0';
+  $Tapper::Schema::ReportsDB::Result::View010TestrunOverviewReports::VERSION = '4.1.1';
 }
 # the number is to sort classes on deploy
 

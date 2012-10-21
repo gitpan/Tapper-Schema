@@ -1,5 +1,8 @@
 Revision history for Tapper-Schema
 
+4.1.1     2012-10-21
+        - explicit dependency to SQL::Translator
+
 4.1.0     2012-10-19
         * PostgreSQL support
         - [FIX] schema definition to also work with PostgreSQL

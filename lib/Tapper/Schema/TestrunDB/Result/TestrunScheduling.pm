@@ -5,7 +5,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::TestrunScheduling::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::VERSION = '4.1.0';
+  $Tapper::Schema::TestrunDB::Result::TestrunScheduling::VERSION = '4.1.1';
 }
 
 use YAML::Syck;

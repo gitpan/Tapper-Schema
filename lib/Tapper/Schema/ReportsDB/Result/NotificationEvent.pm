@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::NotificationEvent::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::NotificationEvent::VERSION = '4.1.0';
+  $Tapper::Schema::ReportsDB::Result::NotificationEvent::VERSION = '4.1.1';
 }
 
 use strict;

@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::VERSION = '4.1.0';
+  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::VERSION = '4.1.1';
 }
 
 use strict;

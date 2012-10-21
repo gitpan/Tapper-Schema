@@ -39,6 +39,7 @@ my %WriteMakefileArgs = (
     "DateTime::Format::MySQL" => 0,
     "DateTime::Format::Pg" => 0,
     "MRO::Compat" => 0,
+    "SQL::Translator" => "0.11006",
     "TAP::DOM" => 0,
     "Tapper::Config" => 0,
     "Tapper::TAP::Harness" => 0,
@@ -48,7 +49,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "4.1.0",
+  "VERSION" => "4.1.1",
   "test" => {
     "TESTS" => "t/*.t"
   }

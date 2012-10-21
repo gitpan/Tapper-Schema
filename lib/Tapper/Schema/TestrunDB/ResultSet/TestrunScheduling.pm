@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::VERSION = '4.1.0';
+  $Tapper::Schema::TestrunDB::ResultSet::TestrunScheduling::VERSION = '4.1.1';
 }
 
 use 5.010;

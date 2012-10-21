@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::AUTHORITY = 'cpan:AMD';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::VERSION = '4.1.0';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::VERSION = '4.1.1';
 }
 
 use 5.010;

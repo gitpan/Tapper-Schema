@@ -35,6 +35,7 @@
             "DateTime::Format::MySQL" : "0",
             "DateTime::Format::Pg" : "0",
             "MRO::Compat" : "0",
+            "SQL::Translator" : "0.11006",
             "TAP::DOM" : "0",
             "Tapper::Config" : "0",
             "Tapper::TAP::Harness" : "0",
@@ -68,7 +69,7 @@
          "web" : "http://github.com/amd/Tapper-Schema"
       }
    },
-   "version" : "4.1.0",
+   "version" : "4.1.1",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
