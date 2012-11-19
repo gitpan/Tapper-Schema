@@ -1,9 +1,9 @@
 package Tapper::Schema::ReportsDB::Result::Report;
 BEGIN {
-  $Tapper::Schema::ReportsDB::Result::Report::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::Result::Report::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Report::VERSION = '4.1.1';
+  $Tapper::Schema::ReportsDB::Result::Report::VERSION = '4.1.2';
 }
 
 use 5.010;

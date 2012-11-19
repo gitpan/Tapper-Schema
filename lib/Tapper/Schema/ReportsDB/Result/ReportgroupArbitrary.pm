@@ -1,9 +1,9 @@
 package Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary;
 BEGIN {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::VERSION = '4.1.1';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupArbitrary::VERSION = '4.1.2';
 }
 
 use strict;

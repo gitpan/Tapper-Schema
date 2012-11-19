@@ -1,9 +1,9 @@
 package Tapper::Schema::ReportsDB::Result::Contact;
 BEGIN {
-  $Tapper::Schema::ReportsDB::Result::Contact::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::Result::Contact::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Contact::VERSION = '4.1.1';
+  $Tapper::Schema::ReportsDB::Result::Contact::VERSION = '4.1.2';
 }
 
 use strict;

@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::DeniedHost;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::DeniedHost::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::DeniedHost::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::DeniedHost::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::DeniedHost::VERSION = '4.1.2';
 }
 
 use strict;

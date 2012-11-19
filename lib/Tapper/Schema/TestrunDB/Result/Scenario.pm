@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::Scenario;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::Scenario::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::Scenario::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Scenario::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::Scenario::VERSION = '4.1.2';
 }
 
 use 5.010;

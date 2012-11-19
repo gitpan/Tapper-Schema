@@ -1,9 +1,9 @@
 package Tapper::Schema::ReportsDB::Result::Notification;
 BEGIN {
-  $Tapper::Schema::ReportsDB::Result::Notification::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::Result::Notification::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::Notification::VERSION = '4.1.1';
+  $Tapper::Schema::ReportsDB::Result::Notification::VERSION = '4.1.2';
 }
 
 use strict;

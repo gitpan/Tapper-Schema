@@ -1,6 +1,6 @@
 package Tapper::Schema::TestrunDB;
 BEGIN {
-  $Tapper::Schema::TestrunDB::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::AUTHORITY = 'cpan:TAPPER';
 }
 
 use 5.010;

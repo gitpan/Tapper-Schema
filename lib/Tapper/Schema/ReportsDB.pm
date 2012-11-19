@@ -1,6 +1,6 @@
 package Tapper::Schema::ReportsDB;
 BEGIN {
-  $Tapper::Schema::ReportsDB::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::AUTHORITY = 'cpan:TAPPER';
 }
 
 use 5.010;

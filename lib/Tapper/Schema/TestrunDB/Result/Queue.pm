@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::Queue;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::Queue::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::Queue::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Queue::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::Queue::VERSION = '4.1.2';
 }
 
 use strict;

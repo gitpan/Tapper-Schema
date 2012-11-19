@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::ResultSet::Queue;
 BEGIN {
-  $Tapper::Schema::TestrunDB::ResultSet::Queue::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::ResultSet::Queue::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::Queue::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::ResultSet::Queue::VERSION = '4.1.2';
 }
 
 use 5.010;

@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::Owner;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::Owner::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::Owner::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::Owner::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::Owner::VERSION = '4.1.2';
 }
 
 use strict;

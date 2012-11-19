@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::TestrunRequestedHost;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::TestrunRequestedHost::VERSION = '4.1.2';
 }
 
 use strict;

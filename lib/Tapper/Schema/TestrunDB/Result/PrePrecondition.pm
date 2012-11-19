@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::Result::PrePrecondition;
 BEGIN {
-  $Tapper::Schema::TestrunDB::Result::PrePrecondition::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::Result::PrePrecondition::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::PrePrecondition::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::Result::PrePrecondition::VERSION = '4.1.2';
 }
 
 use strict;

@@ -1,9 +1,9 @@
 package Tapper::Schema::TestrunDB::ResultSet::Host;
 BEGIN {
-  $Tapper::Schema::TestrunDB::ResultSet::Host::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestrunDB::ResultSet::Host::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::ResultSet::Host::VERSION = '4.1.1';
+  $Tapper::Schema::TestrunDB::ResultSet::Host::VERSION = '4.1.2';
 }
 
 use 5.010;

@@ -1,9 +1,9 @@
 package Tapper::Schema::TestTools;
 BEGIN {
-  $Tapper::Schema::TestTools::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::TestTools::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestTools::VERSION = '4.1.1';
+  $Tapper::Schema::TestTools::VERSION = '4.1.2';
 }
 
 # inspired by Test::Fixture::DBIC::Schema

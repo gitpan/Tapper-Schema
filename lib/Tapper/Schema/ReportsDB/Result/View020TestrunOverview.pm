@@ -1,9 +1,9 @@
 package Tapper::Schema::ReportsDB::Result::View020TestrunOverview;
 BEGIN {
-  $Tapper::Schema::ReportsDB::Result::View020TestrunOverview::AUTHORITY = 'cpan:AMD';
+  $Tapper::Schema::ReportsDB::Result::View020TestrunOverview::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::View020TestrunOverview::VERSION = '4.1.1';
+  $Tapper::Schema::ReportsDB::Result::View020TestrunOverview::VERSION = '4.1.2';
 }
 # the number is to sort classes on deploy
 
