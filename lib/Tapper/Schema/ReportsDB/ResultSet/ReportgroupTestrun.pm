@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::VERSION = '4.1.2';
+  $Tapper::Schema::ReportsDB::ResultSet::ReportgroupTestrun::VERSION = '4.1.3';
 }
 
 use strict;
@@ -21,6 +21,7 @@ sub groupreports {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -40,11 +41,10 @@ AMD OSRC Tapper Team <tapper@amd64.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+This software is Copyright (c) 2013 by Advanced Micro Devices, Inc..
 
 This is free software, licensed under:
 
   The (two-clause) FreeBSD License
 
 =cut
-

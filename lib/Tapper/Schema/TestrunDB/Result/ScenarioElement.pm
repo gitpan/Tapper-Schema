@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::TestrunDB::Result::ScenarioElement::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::TestrunDB::Result::ScenarioElement::VERSION = '4.1.2';
+  $Tapper::Schema::TestrunDB::Result::ScenarioElement::VERSION = '4.1.3';
 }
 
 use 5.010;
@@ -39,8 +39,8 @@ sub peers_need_fitting
 
 1;
 
-
 __END__
+
 =pod
 
 =encoding utf-8
@@ -62,11 +62,10 @@ AMD OSRC Tapper Team <tapper@amd64.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+This software is Copyright (c) 2013 by Advanced Micro Devices, Inc..
 
 This is free software, licensed under:
 
   The (two-clause) FreeBSD License
 
 =cut
-

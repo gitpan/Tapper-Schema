@@ -3,7 +3,7 @@ BEGIN {
   $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::AUTHORITY = 'cpan:TAPPER';
 }
 {
-  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::VERSION = '4.1.2';
+  $Tapper::Schema::ReportsDB::Result::ReportgroupTestrunStats::VERSION = '4.1.3';
 }
 
 use 5.010;
@@ -52,6 +52,14 @@ sub _success_ratio
 }
 
 
+sub success_word
+{
+        my ($self) = @_;
+        $self->success_ratio == 100 ? 'pass' : 'fail';
+}
+
+
+
 sub update_failed_passed
 {
         my ($self) = @_;
@@ -81,6 +89,7 @@ sub update_failed_passed
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -97,6 +106,11 @@ Return all reports of this testrun report group.
 
 Return this reports success ratio of passed vs. total.
 
+=head2 success_word
+
+Reports overall success as a word - fail or pass. This word is always all
+lowercase.
+
 =head2 update_failed_passed
 
 Update reportgroup details, eg. on incoming new reports of this group.
@@ -107,11 +121,10 @@ AMD OSRC Tapper Team <tapper@amd64.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by Advanced Micro Devices, Inc..
+This software is Copyright (c) 2013 by Advanced Micro Devices, Inc..
 
 This is free software, licensed under:
 
   The (two-clause) FreeBSD License
 
 =cut
-
